@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= projectId ? 'Edit' : 'Add' %> Project</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                    <li><a href="/admin/projects">Projects</a></li>
+                    <li><a href="/admin/blogs">Blog Posts</a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1><%= projectId ? 'Edit' : 'Add' %> Project</h1>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City/Location:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type" required>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shortDescription">Short Description:</label>
+                    <textarea id="shortDescription" name="shortDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="longDescription">Long Description:</label>
+                    <textarea id="longDescription" name="longDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="mainImage">Main Image:</label>
+                    <input type="file" id="mainImage" name="mainImage" accept="image/*">
+                    <img id="mainImagePreview" src="" alt="Main Image Preview" style="max-width: 200px; display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="galleryImages">Gallery Images (optional):</label>
+                    <input type="file" id="galleryImages" name="galleryImages" accept="image/*" multiple>
+                    <div id="galleryImagesPreview" style="display: flex; flex-wrap: wrap;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="startingPrice">Starting Price:</label>
+                    <input type="number" id="startingPrice" name="startingPrice">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Upcoming">Upcoming</option>
+                    </select>
+                </div>
+                <button type="submit"><%= projectId ? 'Update' : 'Add' %> Project</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        const projectId = '<%= projectId %>';
+        const form = document.getElementById('projectForm');
+
+        // Function to load project data for editing
+        async function loadProjectData() {
+            if (projectId) {
+                try {
+                    const response = await fetch(`/api/projects/${projectId}`);
+                    const project = await response.json();
+
+                    document.getElementById('title').value = project.title;
+                    document.getElementById('city').value = project.city;
+                    document.getElementById('type').value = project.type;
+                    document.getElementById('shortDescription').value = project.shortDescription;
+                    document.getElementById('longDescription').value = project.longDescription;
+                    document.getElementById('price').value = project.price;
+                    document.getElementById('startingPrice').value = project.startingPrice;
+                    document.getElementById('status').value = project.status;
+
+                    // Display main image preview
+                    if (project.mainImage) {
+                        const mainImagePreview = document.getElementById('mainImagePreview');
+                        mainImagePreview.src = project.mainImage;
+                        mainImagePreview.style.display = 'block';
+                    }
+
+                    // Display gallery images preview
+                    if (project.galleryImages && project.galleryImages.length > 0) {
+                        const galleryImagesPreview = document.getElementById('galleryImagesPreview');
+                        project.galleryImages.forEach(image => {
+                            const img = document.createElement('img');
+                            img.src = image;
+                            img.style.maxWidth = '100px';
+                            img.style.margin = '5px';
+                            galleryImagesPreview.appendChild(img);
+                        });
+                    }
+
+                } catch (error) {
+                    console.error('Error loading project:', error);
+                }
+            }
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            // If mainImage or galleryImages are not changed, remove them from formData to avoid sending empty files
+            if (document.getElementById('mainImage').files.length === 0 && projectId) {
+                formData.delete('mainImage');
+            }
+            if (document.getElementById('galleryImages').files.length === 0 && projectId) {
+                formData.delete('galleryImages');
+            }
+
+            const method = projectId ? 'PATCH' : 'POST';
+            const url = projectId ? `/api/projects/${projectId}` : '/api/projects';
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Project saved successfully!');
+                    window.location.href = '/admin/projects';
+                } else {
+                    const errorData = await response.json();
+                    alert('Failed to save project: ' + (errorData.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error saving project:', error);
+                alert('An error occurred while saving the project.');
+            }
+        });
+
+        // Initial load
+        loadProjectData();
+    </script>
+</body>
+</html>

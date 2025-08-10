@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Projects</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                    <li><a href="/admin/projects">Projects</a></li>
+                    <li><a href="/admin/blogs">Blog Posts</a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1>Manage Projects</h1>
+            <a href="/admin/projects/edit" class="button">Add New Project</a>
+            <table id="projectsTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>City</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Projects will be loaded here by JavaScript -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script>
+        async function fetchProjects() {
+            try {
+                const response = await fetch('/api/projects');
+                const projects = await response.json();
+                const tableBody = document.querySelector('#projectsTable tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                projects.forEach(project => {
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = project.title;
+                    row.insertCell().textContent = project.city;
+                    row.insertCell().textContent = project.type;
+                    row.insertCell().textContent = project.status;
+                    const actionsCell = row.insertCell();
+                    actionsCell.innerHTML = `
+                        <a href="/admin/projects/edit/${project._id}" class="button edit">Edit</a>
+                        <button class="button delete" onclick="deleteProject('${project._id}')">Delete</button>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        }
+
+        async function deleteProject(id) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                try {
+                    const response = await fetch(`/api/projects/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                        }
+                    });
+                    if (response.ok) {
+                        fetchProjects(); // Refresh the list
+                    } else {
+                        alert('Failed to delete project.');
+                    }
+                } catch (error) {
+                    console.error('Error deleting project:', error);
+                    alert('An error occurred while deleting the project.');
+                }
+            }
+        }
+
+        fetchProjects();
+    </script>
+</body>
+</html>

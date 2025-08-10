@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= blogId ? 'Edit' : 'Add' %> Blog Post</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                    <li><a href="/admin/projects">Projects</a></li>
+                    <li><a href="/admin/blogs">Blog Posts</a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1><%= blogId ? 'Edit' : 'Add' %> Blog Post</h1>
+            <form id="blogPostForm">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="shortDescription">Short Description:</label>
+                    <textarea id="shortDescription" name="shortDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fullContent">Full Content:</label>
+                    <textarea id="fullContent" name="fullContent" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="coverImage">Cover Image:</label>
+                    <input type="file" id="coverImage" name="coverImage" accept="image/*">
+                    <img id="coverImagePreview" src="" alt="Cover Image Preview" style="max-width: 200px; display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <button type="submit"><%= blogId ? 'Update' : 'Add' %> Blog Post</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        const blogId = '<%= blogId %>';
+        const form = document.getElementById('blogPostForm');
+
+        // Function to load blog post data for editing
+        async function loadBlogPostData() {
+            if (blogId) {
+                try {
+                    const response = await fetch(`/api/blogs/${blogId}`);
+                    const blogPost = await response.json();
+
+                    document.getElementById('title').value = blogPost.title;
+                    document.getElementById('shortDescription').value = blogPost.shortDescription;
+                    document.getElementById('fullContent').value = blogPost.fullContent;
+                    document.getElementById('date').value = blogPost.date ? new Date(blogPost.date).toISOString().split('T')[0] : '';
+
+                    // Display cover image preview
+                    if (blogPost.coverImage) {
+                        const coverImagePreview = document.getElementById('coverImagePreview');
+                        coverImagePreview.src = blogPost.coverImage;
+                        coverImagePreview.style.display = 'block';
+                    }
+
+                } catch (error) {
+                    console.error('Error loading blog post:', error);
+                }
+            }
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            // If coverImage is not changed, remove it from formData to avoid sending empty file
+            if (document.getElementById('coverImage').files.length === 0 && blogId) {
+                formData.delete('coverImage');
+            }
+
+            const method = blogId ? 'PATCH' : 'POST';
+            const url = blogId ? `/api/blogs/${blogId}` : '/api/blogs';
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Blog post saved successfully!');
+                    window.location.href = '/admin/blogs';
+                } else {
+                    const errorData = await response.json();
+                    alert('Failed to save blog post: ' + (errorData.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error saving blog post:', error);
+                alert('An error occurred while saving the blog post.');
+            }
+        });
+
+        // Initial load
+        loadBlogPostData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Blog Posts</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                    <li><a href="/admin/projects">Projects</a></li>
+                    <li><a href="/admin/blogs">Blog Posts</a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1>Manage Blog Posts</h1>
+            <a href="/admin/blogs/edit" class="button">Add New Blog Post</a>
+            <table id="blogPostsTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Blog posts will be loaded here by JavaScript -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script>
+        async function fetchBlogPosts() {
+            try {
+                const response = await fetch('/api/blogs');
+                const blogPosts = await response.json();
+                const tableBody = document.querySelector('#blogPostsTable tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                blogPosts.forEach(post => {
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = post.title;
+                    row.insertCell().textContent = new Date(post.date).toLocaleDateString();
+                    const actionsCell = row.insertCell();
+                    actionsCell.innerHTML = `
+                        <a href="/admin/blogs/edit/${post._id}" class="button edit">Edit</a>
+                        <button class="button delete" onclick="deleteBlogPost('${post._id}')">Delete</button>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error fetching blog posts:', error);
+            }
+        }
+
+        async function deleteBlogPost(id) {
+            if (confirm('Are you sure you want to delete this blog post?')) {
+                try {
+                    const response = await fetch(`/api/blogs/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                        }
+                    });
+                    if (response.ok) {
+                        fetchBlogPosts(); // Refresh the list
+                    } else {
+                        alert('Failed to delete blog post.');
+                    }
+                } catch (error) {
+                    console.error('Error deleting blog post:', error);
+                    alert('An error occurred while deleting the blog post.');
+                }
+            }
+        }
+
+        fetchBlogPosts();
+    </script>
+</body>
+</html>
