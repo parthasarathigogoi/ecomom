@@ -9,9 +9,17 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  location: {
+    type: String,
+    required: true
+  },
   type: {
     type: String,
-    enum: ['Residential', 'Commercial', 'Other'],
+    enum: ['Apartments', 'Villas', 'Plots', 'Commercial'],
+    required: true
+  },
+  configuration: {
+    type: String,
     required: true
   },
   shortDescription: {
@@ -22,21 +30,44 @@ const ProjectSchema = new mongoose.Schema({
     type: String
   },
   mainImage: {
-    type: String // URL or path to image
+    type: String
+  },
+  bannerImage: {
+    type: String
   },
   galleryImages: [
-    { type: String } // Array of URLs or paths
+    { type: String }
   ],
   price: {
-    type: Number
+    type: String,
+    required: true
   },
   startingPrice: {
-    type: Number
+    type: String
+  },
+  area: {
+    type: String
+  },
+  possession: {
+    type: String
   },
   status: {
     type: String,
-    enum: ['Ongoing', 'Completed', 'Upcoming'],
+    enum: ['Ongoing', 'Completed', 'Upcoming', 'Ready to Move'],
     default: 'Upcoming'
+  },
+  amenities: [{
+    type: String
+  }],
+  highlights: [{
+    type: String
+  }],
+  reraNumber: {
+    type: String
+  },
+  featured: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true });
 

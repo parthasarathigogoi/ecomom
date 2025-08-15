@@ -41,6 +41,7 @@ const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const Project = require('./models/Project');
 
 // Use Routes
 app.use('/api/auth', authRoutes);
@@ -48,9 +49,50 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/admin', adminRoutes);
 
-// Basic route for the root URL
-app.get('/', (req, res) => {
-  res.redirect('/admin/login');
+// Home route - render home page with projects
+app.get('/', async (req, res) => {
+  try {
+    const projects = await Project.find({ featured: true }).limit(3);
+    res.render('home', { projects });
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    res.render('home', { projects: [] });
+  }
+});
+
+// Disable CMS login temporarily
+app.get('/admin/login', (req, res) => {
+  res.redirect('/');
+});
+
+// Add routes for created pages
+app.get('/projects', (req, res) => {
+    res.render('all-projects');
+});
+
+app.get('/projects/:id', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).send('Project not found');
+    }
+    res.render('single-property', { property: project });
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+app.get('/about', (req, res) => {
+    res.render('about-us');
+});
+
+app.get('/blog', (req, res) => {
+    res.render('blog');
+});
+
+app.get('/contact', (req, res) => {
+    res.render('contact');
 });
 
 const PORT = process.env.PORT || 3000;

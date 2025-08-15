@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Advertising - Premium Advertising & Brand Solutions</title>
+    <link rel="stylesheet" href="/css/prestige.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container flex items-center justify-between py-4">
+            <div class="flex items-center gap-4">
+                <img src="/images/prestige-logo.png" alt="Prestige Group Logo" class="h-16 w-auto header-logo-img" style="object-fit:contain;" />
+                <div class="logo font-serif text-2xl font-bold tracking-wide">Prestige Group</div>
+            </div>
+            <nav class="nav-menu flex gap-8 text-lg font-medium">
+                <a href="/" class="active text-gold">Home</a>
+                <a href="/projects">All Projects</a>
+                <a href="/single-property">Single Property</a>
+                <a href="/about">About Us</a>
+                <a href="/blog">Blog</a>
+                <a href="/contact">Contact</a>
+            </nav>
+            <div class="flex gap-2">
+                <a href="/projects" class="btn btn-primary bg-gold px-6 py-2 rounded shadow-lg font-semibold">UPCOMING PROJECTS</a>
+                <button class="menu-toggle ml-4"><span class="icon-menu"></span></button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero relative overflow-hidden" style="height: 600px;">
+        <img src="/images/hero-bg.jpg" alt="Prestige Pallavaram Gardens" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="container relative z-10 flex flex-col justify-center h-full">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-bold text-white mb-6">FIND YOUR ELEMENT.</h1>
+                <p class="text-xl text-white mb-8">2, 3 & 4 Bed Homes starting at <span class="text-gold font-bold">1.2 Cr*</span><br>On prime 200 ft Pallavaram Thoraipakkam Radial Road</p>
+                <a href="/projects" class="btn btn-primary bg-gold text-black px-8 py-3 rounded-lg shadow-xl font-bold text-lg">UPCOMING PROJECTS</a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-8 flex gap-4">
+            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
+                <span class="block text-lg font-semibold text-gold">Connectivity</span>
+            </div>
+            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
+                <span class="block text-lg font-semibold text-gold">Balance</span>
+            </div>
+            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
+                <span class="block text-lg font-semibold text-gold">Mindfulness</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>Discover our exquisite range of residential properties tailored to your needs.</p>
+            </div>
+            <div class="projects-grid">
+                <% projects.forEach(project => { %>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('<%= project.mainImage %>');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title"><%= project.title %></h3>
+                        <p class="project-location"><%= project.city %></p>
+                        <p class="project-price">Starting at ₹<%= project.startingPrice %></p>
+                        <a href="/projects/<%= project._id %>" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 30px;">About Prestige Construction</h2>
+                    <p style="margin-bottom: 20px; font-size: 1.125rem;">Prestige Construction is synonymous with excellence in the real estate market. With over three decades of experience, we have been transforming the landscape of India's major cities with landmark developments.</p>
+                    <p style="margin-bottom: 30px;">We take immense pride in crafting residential projects that redefine luxury living. From stylish apartments in gated communities to opulent villas, each Prestige development is a testament to architectural brilliance and uncompromising quality.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div style="text-align: center;">
+                            <h3 style="color: var(--prestige-secondary); font-size: 2.5rem; margin-bottom: 10px;">300+</h3>
+                            <p>Completed Projects</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <h3 style="color: var(--prestige-secondary); font-size: 2.5rem; margin-bottom: 10px;">50+</h3>
+                            <p>Ongoing Projects</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'); height: 400px; background-size: cover; background-position: center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: var(--prestige-light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from our satisfied customers who have made Prestige their home.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Prestige Construction has truly exceeded our expectations. The quality of construction, attention to detail, and the overall living experience is exceptional. Our dream home is now a reality."</p>
+                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Rajesh Kumar</h4>
+                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige Pallavaram Gardens</p>
+                </div>
+                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <p style="font-style: italic; margin-bottom: 20px;">"The attention to detail and quality of construction is unmatched. The amenities provided are world-class. I highly recommend Prestige to anyone looking for their dream home."</p>
+                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Priya Sharma</h4>
+                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige Lakeside Habitat</p>
+                </div>
+                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Living in a Prestige property has been an absolute pleasure. The community is vibrant, the facilities are excellent, and the location is perfect."</p>
+                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Arjun Patel</h4>
+                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige West Woods</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Brands</h2>
+                <p>Explore the diverse verticals of Prestige Construction.</p>
+            </div>
+            <div class="brands-grid">
+                <div class="brand-logo" style="background-image: url('/images/brand1.jpg');"></div>
+                <div class="brand-logo" style="background-image: url('/images/brand2.jpg');"></div>
+                <div class="brand-logo" style="background-image: url('/images/brand3.jpg');"></div>
+                <div class="brand-logo" style="background-image: url('/images/brand4.jpg');"></div>
+                <div class="brand-logo" style="background-image: url('/images/brand5.jpg');"></div>
+                <div class="brand-logo" style="background-image: url('/images/brand6.jpg');"></div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you. Fill out the form below to get in touch.</p>
+        </div>
+        <form class="contact-form" action="/api/contact" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About AC Advertising</h4>
+                    <p>AC Advertising is a leading advertising agency, known for its commitment to creativity and innovation. With over 30 years of experience, we have delivered impactful campaigns across all major platforms.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Investors</h4>
+                    <ul>
+                        <li><a href="/investors">Financial Performance</a></li>
+                        <li><a href="/investors">Annual Report</a></li>
+                        <li><a href="/investors">ESG</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><strong>Email:</strong> info@prestigeconstruction.com</p>
+                    <p><strong>Phone:</strong> +91 80 2559 1234</p>
+                    <p><strong>Address:</strong> The Falcon House, No. 1, Main Guard Cross Road, Bangalore - 560001</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Prestige Construction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider JavaScript
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-nav-dot');
+        
+        function changeSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            changeSlide(currentSlide);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) { // Adjust this value as needed
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

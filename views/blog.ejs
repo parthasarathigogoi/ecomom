@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - AC Advertising</title>
+    <link rel="stylesheet" href="/css/prestige.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">AC Advertising</div>
+            <nav class="nav-menu">
+                <a href="/">Home</a>
+                <a href="/projects">All Projects</a>
+                <a href="/about">About Us</a>
+                <a href="/blog" class="active">Blog</a>
+                <a href="/contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Blog</h1>
+            <p>Stay updated with the latest trends and insights in advertising and marketing</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="blogs-grid">
+                <% blogs.forEach(blog => { %>
+                <div class="blog-card">
+                    <div class="blog-image" style="background-image: url('<%= blog.coverImage %>');"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title"><%= blog.title %></h3>
+                        <p class="blog-date"><%= blog.date %></p>
+                        <p class="blog-description"><%= blog.shortDescription %></p>
+                        <a href="/blog/<%= blog._id %>" class="btn btn-outline">Read More</a>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                <h4>About AC Advertising</h4>
+                <p>AC Advertising is a leading advertising agency, known for its commitment to creativity and innovation. With over 30 years of experience, we have delivered impactful campaigns across all major platforms.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><strong>Email:</strong> info@prestigeconstruction.com</p>
+                    <p><strong>Phone:</strong> +91 80 2559 1234</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Prestige Construction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
