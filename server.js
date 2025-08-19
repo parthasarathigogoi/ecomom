@@ -36,38 +36,68 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Import Routes
+// Import routes
 const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const pageRoutes = require('./routes/pageRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const Project = require('./models/Project');
 
-// Use Routes
+// API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/blogs', blogRoutes);
+app.use('/api/pages', pageRoutes);
 app.use('/admin', adminRoutes);
 
 // Home route - render home page with projects
-app.get('/', async (req, res) => {
+app.get('/home', async (req, res) => {
   try {
     const projects = await Project.find({ featured: true }).limit(3);
-    res.render('home', { projects });
+    const Page = require('./models/Page');
+    const homePage = await Page.findOne({ name: 'home' });
+    res.render('home', { 
+      projects,
+      page: homePage || { 
+        title: 'Welcome to EcoMom',
+        content: {
+          heroTitle: 'Sustainable Living Spaces',
+          heroSubtitle: 'Eco-friendly homes for a better tomorrow'
+        }
+      }
+    });
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    res.render('home', { projects: [] });
+    console.error('Error fetching home page data:', error);
+    res.render('home', { projects: [], page: null });
   }
 });
 
-// Disable CMS login temporarily
-app.get('/admin/login', (req, res) => {
-  res.redirect('/');
+// Redirect root to admin login
+app.get('/', (req, res) => {
+  res.redirect('/admin/login');
 });
 
 // Add routes for created pages
-app.get('/projects', (req, res) => {
-    res.render('all-projects');
+app.get('/projects', async (req, res) => {
+  try {
+    const projects = await Project.find();
+    const Page = require('./models/Page');
+    const projectsPage = await Page.findOne({ name: 'projects' });
+    res.render('all-projects', { 
+      projects,
+      page: projectsPage || { 
+        title: 'Our Projects - EcoMom',
+        content: {
+          mainHeading: 'Sustainable Living Projects',
+          introText: '<p>Explore our portfolio of eco-friendly residential and commercial projects.</p>'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching projects page data:', error);
+    res.render('all-projects', { projects: [], page: null });
+  }
 });
 
 app.get('/projects/:id', async (req, res) => {
@@ -83,16 +113,64 @@ app.get('/projects/:id', async (req, res) => {
   }
 });
 
-app.get('/about', (req, res) => {
-    res.render('about-us');
+app.get('/about', async (req, res) => {
+  try {
+    const Page = require('./models/Page');
+    const aboutPage = await Page.findOne({ name: 'about' });
+    res.render('about-us', { 
+      page: aboutPage || { 
+        title: 'About Us - EcoMom',
+        content: {
+          mainHeading: 'Our Story',
+          mainContent: '<p>Founded in 2010, EcoMom has been at the forefront of sustainable real estate development.</p>'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching about page data:', error);
+    res.status(500).send('Server Error');
+  }
 });
 
-app.get('/blog', (req, res) => {
-    res.render('blog');
+app.get('/blog', async (req, res) => {
+  try {
+    const BlogPost = require('./models/BlogPost');
+    const blogPosts = await BlogPost.find().sort({ date: -1 });
+    const Page = require('./models/Page');
+    const blogPage = await Page.findOne({ name: 'blog' });
+    res.render('blog', { 
+      blogPosts,
+      page: blogPage || { 
+        title: 'Blog - EcoMom',
+        content: {
+          mainHeading: 'Sustainable Living Insights',
+          introText: '<p>Stay updated with the latest trends in sustainable living.</p>'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching blog page data:', error);
+    res.render('blog', { blogPosts: [], page: null });
+  }
 });
 
-app.get('/contact', (req, res) => {
-    res.render('contact');
+app.get('/contact', async (req, res) => {
+  try {
+    const Page = require('./models/Page');
+    const contactPage = await Page.findOne({ name: 'contact' });
+    res.render('contact', { 
+      page: contactPage || { 
+        title: 'Contact Us - EcoMom',
+        content: {
+          mainHeading: 'Get in Touch',
+          introText: '<p>We\'d love to hear from you.</p>'
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching contact page data:', error);
+    res.status(500).send('Server Error');
+  }
 });
 
 const PORT = process.env.PORT || 3000;

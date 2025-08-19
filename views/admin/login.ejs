@@ -44,8 +44,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Store token in a cookie (or localStorage)
-                    document.cookie = `token=${data.token}; path=/; max-age=3600`; // 1 hour expiry
+                    // Token is already set as a cookie by the server
                     window.location.href = '/admin/dashboard';
                 } else {
                     messageElement.textContent = data.message || 'Login failed';

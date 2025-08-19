@@ -52,6 +52,19 @@ router.get('/blogs/edit/:id?', verifyAdmin, (req, res) => {
   res.render('admin/blog_edit', { user: req.user, blogId: req.params.id });
 });
 
+// Page Management Routes
+router.get('/pages/:name', verifyAdmin, async (req, res) => {
+  const pageName = req.params.name;
+  // Validate page name
+  if (!['home', 'about', 'contact', 'projects', 'blog'].includes(pageName)) {
+    return res.status(404).send('Page not found');
+  }
+  res.render('admin/page_edit', { user: req.user, pageName: pageName });
+});
+router.get('/blogs/edit/:id?', verifyAdmin, (req, res) => {
+  res.render('admin/blog_edit', { user: req.user, blogId: req.params.id });
+});
+
 // Admin Logout
 router.get('/logout', (req, res) => {
   res.clearCookie('token');

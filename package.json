@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "init-pages": "node scripts/initPages.js",
+    "start-cms": "node scripts/startCMS.js"
   },
   "keywords": [],
   "author": "",

@@ -15,6 +15,9 @@
                     <li><a href="/admin/dashboard">Dashboard</a></li>
                     <li><a href="/admin/projects">Projects</a></li>
                     <li><a href="/admin/blogs">Blog Posts</a></li>
+                    <li><a href="/admin/pages/home">Home Page</a></li>
+                    <li><a href="/admin/pages/about">About Us</a></li>
+                    <li><a href="/admin/pages/contact">Contact Page</a></li>
                     <li><a href="/admin/logout">Logout</a></li>
                 </ul>
             </nav>
@@ -22,7 +25,48 @@
         <main class="content">
             <h1>Welcome to the Admin Dashboard, <%= user.email %>!</h1>
             <p>Use the navigation on the left to manage your content.</p>
-            <!-- Dashboard content goes here -->
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Projects</h3>
+                    <p class="stat-number" id="projectCount">Loading...</p>
+                    <a href="/admin/projects" class="btn">Manage Projects</a>
+                </div>
+                <div class="stat-card">
+                    <h3>Blog Posts</h3>
+                    <p class="stat-number" id="blogCount">Loading...</p>
+                    <a href="/admin/blogs" class="btn">Manage Blogs</a>
+                </div>
+                <div class="stat-card">
+                    <h3>Pages</h3>
+                    <p class="stat-number">5</p>
+                    <a href="#" class="btn">Manage Pages</a>
+                </div>
+            </div>
+            
+            <script>
+                // Fetch project count
+                fetch('/api/projects')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('projectCount').textContent = data.length;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching projects:', error);
+                        document.getElementById('projectCount').textContent = 'Error';
+                    });
+                
+                // Fetch blog count
+                fetch('/api/blogs')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('blogCount').textContent = data.length;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching blogs:', error);
+                        document.getElementById('blogCount').textContent = 'Error';
+                    });
+            </script>
         </main>
     </div>
 </body>
