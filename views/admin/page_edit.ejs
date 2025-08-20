@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit <%= pageName.charAt(0).toUpperCase() + pageName.slice(1) %> Page | Admin</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- Include TinyMCE for rich text editing -->
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/blogs">Blog Posts</a></li>
-                    <li><a href="/admin/pages/home">Home Page</a></li>
-                    <li><a href="/admin/pages/about">About Us</a></li>
-                    <li><a href="/admin/pages/contact">Contact Page</a></li>
-                    <li><a href="/admin/logout">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="content">
+<!-- Include TinyMCE for rich text editing -->
+<% extraStyles = '<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>' %>
             <h1>Edit <%= pageName.charAt(0).toUpperCase() + pageName.slice(1) %> Page</h1>
             <div id="message" class="message" style="display: none;"></div>
             
@@ -249,5 +224,3 @@
             fetchPageData();
         });
     </script>
-</body>
-</html>

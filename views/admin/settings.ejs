@@ -1,0 +1,81 @@
+<%- layout('layout') -%>
+<%- style('admin-animations.css') -%>
+<%- script('admin-animations.js') -%>
+
+<div class="card">
+    <h2>General Settings</h2>
+    <p>Configure general settings for your CMS.</p>
+    <form>
+        <div class="form-group">
+            <label for="siteTitle">Site Title</label>
+            <input type="text" id="siteTitle" name="siteTitle" value="Ecomom CMS">
+        </div>
+        <div class="form-group">
+            <label for="adminEmail">Admin Email</label>
+            <input type="email" id="adminEmail" name="adminEmail" value="admin@example.com">
+        </div>
+        <div class="form-group">
+            <label for="itemsPerPage">Items Per Page (Tables)</label>
+            <input type="number" id="itemsPerPage" name="itemsPerPage" value="10">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Settings</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const siteTitleInput = document.querySelector('#siteTitle');
+    const adminEmailInput = document.querySelector('#adminEmail');
+    const itemsPerPageInput = document.querySelector('#itemsPerPage');
+    const settingsForm = document.querySelector('form');
+
+    async function fetchSettings() {
+        try {
+            const response = await fetch('/api/settings', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const settings = await response.json();
+            siteTitleInput.value = settings.siteTitle;
+            adminEmailInput.value = settings.adminEmail;
+            itemsPerPageInput.value = settings.itemsPerPage;
+        } catch (error) {
+            console.error('Error fetching settings:', error);
+            showToast('Error fetching settings.', 'error');
+        }
+    }
+
+    settingsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const updatedSettings = {
+            siteTitle: siteTitleInput.value,
+            adminEmail: adminEmailInput.value,
+            itemsPerPage: itemsPerPageInput.value
+        };
+
+        try {
+            const response = await fetch('/api/settings', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(updatedSettings)
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            showToast('Settings updated successfully!', 'success');
+        } catch (error) {
+            console.error('Error updating settings:', error);
+            showToast('Error updating settings.', 'error');
+        }
+    });
+
+    fetchSettings();
+</script>

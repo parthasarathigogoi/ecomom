@@ -13,7 +13,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); // Add cookie-parser middleware
+
+// Setup EJS with layouts
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(require('express-ejs-layouts'));
+app.set('layout', false); // Default to no layout unless specified
+
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from public directory
 
 // Database connection
@@ -42,13 +48,44 @@ const projectRoutes = require('./routes/projectRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const pageRoutes = require('./routes/pageRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const mediaRoutes = require('./routes/mediaRoutes');
+const userRoutes = require('./routes/userRoutes');
+const settingsRoutes = require('./routes/settingsRoutes');
 const Project = require('./models/Project');
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/projects', projectRoutes);
+
+// Apply authentication middleware to protected routes
+app.use('/api/projects', (req, res, next) => {
+  // Skip authentication for GET requests (public access)
+  if (req.method === 'GET') {
+    return next();
+  }
+  // Apply authentication for POST, PATCH, DELETE (admin only)
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  
+  if (!token) {
+    console.log('No token provided');
+    return res.status(401).json({ message: 'No token provided' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      console.log('Token verification failed:', err.message);
+      return res.status(403).json({ message: 'Invalid token' });
+    }
+    req.user = user;
+    next();
+  });
+}, projectRoutes);
+
 app.use('/api/blogs', blogRoutes);
 app.use('/api/pages', pageRoutes);
+app.use('/api/media', mediaRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/settings', settingsRoutes);
 app.use('/admin', adminRoutes);
 
 // Home route - render home page with projects

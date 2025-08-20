@@ -1,0 +1,119 @@
+<%- layout('layout') -%>
+<%- style('admin-animations.css') -%>
+<%- script('admin-animations.js') -%>
+
+<div class="card">
+    <h2>Media Management</h2>
+    <p>This section will allow you to manage your media files (images, videos, documents).</p>
+
+    <div class="form-group">
+        <label for="mediaUpload">Upload New Media</label>
+        <input type="file" id="mediaUpload" name="mediaFile" accept="image/*,video/*,application/pdf">
+        <button class="btn btn-primary" id="uploadMediaBtn"><i class="fas fa-upload"></i> Upload</button>
+    </div>
+
+    <h3>Existing Media</h3>
+    <div class="media-gallery grid-container" id="mediaGallery">
+        <!-- Media items will be loaded here dynamically -->
+        <p id="noMediaMessage">No media files uploaded yet.</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadMediaBtn = document.getElementById('uploadMediaBtn');
+        const mediaUploadInput = document.getElementById('mediaUpload');
+        const mediaGallery = document.getElementById('mediaGallery');
+        const noMediaMessage = document.getElementById('noMediaMessage');
+
+        // Function to fetch and display media
+        async function fetchMedia() {
+            try {
+                const response = await fetch('/api/media');
+                const mediaFiles = await response.json();
+                
+                mediaGallery.innerHTML = ''; // Clear existing media
+                if (mediaFiles.length === 0) {
+                    noMediaMessage.style.display = 'block';
+                } else {
+                    noMediaMessage.style.display = 'none';
+                    mediaFiles.forEach(media => {
+                        const mediaItem = document.createElement('div');
+                        mediaItem.className = 'card media-item';
+                        mediaItem.innerHTML = `
+                            <img src="${media.path}" alt="${media.originalname}" style="max-width: 100%; height: auto;">
+                            <p>${media.originalname}</p>
+                            <button class="btn btn-danger btn-sm delete-media-btn" data-id="${media._id}"><i class="fas fa-trash"></i> Delete</button>
+                        `;
+                        mediaGallery.appendChild(mediaItem);
+                    });
+                    addDeleteEventListeners();
+                }
+            } catch (error) {
+                console.error('Error fetching media:', error);
+                showToast('Error fetching media.', 'error');
+            }
+        }
+
+        // Function to handle file upload
+        uploadMediaBtn.addEventListener('click', async function() {
+            const file = mediaUploadInput.files[0];
+            if (!file) {
+                showToast('Please select a file to upload.', 'info');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('mediaFile', file);
+
+            try {
+                const response = await fetch('/api/media/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    showToast('Media uploaded successfully!', 'success');
+                    mediaUploadInput.value = ''; // Clear input
+                    fetchMedia(); // Refresh media list
+                } else {
+                    const errorData = await response.json();
+                    showToast(`Upload failed: ${errorData.message}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error uploading media:', error);
+                showToast('Error uploading media.', 'error');
+            }
+        });
+
+        // Function to handle media deletion
+        function addDeleteEventListeners() {
+            document.querySelectorAll('.delete-media-btn').forEach(button => {
+                button.addEventListener('click', async function() {
+                    const mediaId = this.dataset.id;
+                    if (confirm('Are you sure you want to delete this media file?')) {
+                        try {
+                            const response = await fetch(`/api/media/${mediaId}`, {
+                                method: 'DELETE'
+                            });
+
+                            if (response.ok) {
+                                showToast('Media deleted successfully!', 'success');
+                                fetchMedia(); // Refresh media list
+                            } else {
+                                const errorData = await response.json();
+                                showToast(`Deletion failed: ${errorData.message}`, 'error');
+                            }
+                        } catch (error) {
+                            console.error('Error deleting media:', error);
+                            showToast('Error deleting media.', 'error');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Initial fetch of media when the page loads
+        fetchMedia();
+    });
+</script>

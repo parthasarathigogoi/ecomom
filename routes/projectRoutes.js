@@ -39,9 +39,12 @@ router.get('/:id', async (req, res) => {
 
 // Create new project (admin only)
 router.post('/', upload.fields([{ name: 'mainImage', maxCount: 1 }, { name: 'galleryImages', maxCount: 10 }]), async (req, res) => {
+  console.log('Request body:', req.body);
   const project = new Project({
     title: req.body.title,
     city: req.body.city,
+    location: req.body.location,
+    configuration: req.body.configuration,
     type: req.body.type,
     shortDescription: req.body.shortDescription,
     longDescription: req.body.longDescription,
