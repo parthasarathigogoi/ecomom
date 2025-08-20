@@ -3,55 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= property.title %> - AC Advertising</title>
+    <title><%= property.title %> - Prestige Group</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/prestige.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo">AC Advertising</div>
+            <div class="logo">PRESTIGE</div>
             <nav class="nav-menu">
                 <a href="/">Home</a>
-                <a href="/projects">All Projects</a>
-                <a href="/about">About Us</a>
+                <a href="/all-projects">All Projects</a>
+                <a href="/about-us">About Us</a>
                 <a href="/blog">Blog</a>
-                <a href="/contact">Contact Us</a>
+                <a href="/contact">Contact</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1><%= property.title %></h1>
-            <p>AC Advertising Campaign - <%= property.city %></p>
-        </div>
-    </section>
-
-    <section class="property-details">
-        <div class="container">
-            <div class="property-gallery">
-                <img src="<%= property.mainImage %>" alt="<%= property.title %>" class="main-image">
-                <div class="gallery-thumbnails">
-                    <% property.galleryImages.forEach(image => { %>
-                        <img src="<%= image %>" alt="Gallery Image" class="thumbnail">
-                    <% }); %>
+    <main class="prestige-property-main">
+        <section class="prestige-property-hero">
+            <img src="<%= property.mainImage %>" alt="<%= property.title %>" class="prestige-hero-image">
+            <div class="prestige-property-sidebar">
+                <div class="prestige-property-info">
+                    <h1 class="prestige-property-title"><%= property.title %></h1>
+                    <div class="prestige-property-location"><%= property.location %></div>
+                    <div class="prestige-property-rera">RERA No: <%= property.rera %></div>
+                    <div class="prestige-property-price">₹<%= property.price %> Onwards</div>
+                    <div class="prestige-property-details">
+                        <span class="prestige-detail"><i class="icon-apartment"></i> <%= property.type %></span>
+                        <span class="prestige-detail"><i class="icon-area"></i> <%= property.developmentSize %></span>
+                        <span class="prestige-detail"><i class="icon-units"></i> <%= property.totalUnits %> Units</span>
+                    </div>
+                    <a href="tel:<%= property.phone %>" class="prestige-btn prestige-btn-primary prestige-property-phone"> <i class="icon-phone"></i> <%= property.phone %></a>
+                    <a href="<%= property.clearanceDocUrl %>" class="prestige-btn prestige-btn-outline" target="_blank">Environmental Clearance</a>
                 </div>
             </div>
-            <div class="property-info">
-                <h2>About the Property</h2>
-                <p><%= property.description %></p>
-                <ul class="property-features">
-                    <li><strong>Type:</strong> <%= property.type %></li>
-                    <li><strong>Bedrooms:</strong> <%= property.bedrooms %></li>
-                    <li><strong>Price:</strong> ₹<%= property.price %></li>
-                    <li><strong>Status:</strong> <%= property.status %></li>
-                </ul>
-                <button class="btn btn-primary">Enquire Now</button>
-                <button class="btn btn-secondary">Book a Site Visit</button>
+        </section>
+        <section class="prestige-property-gallery">
+            <div class="prestige-gallery-thumbnails">
+                <% property.galleryImages.forEach(image => { %>
+                    <img src="<%= image %>" alt="Gallery Image" class="prestige-gallery-thumbnail">
+                <% }); %>
             </div>
-        </div>
-    </section>
-
+        </section>
+        <section class="prestige-property-description">
+            <h2>About the Project</h2>
+            <p><%= property.description %></p>
+        </section>
+        <section class="prestige-callback-form-section">
+            <h3>Request a Callback</h3>
+            <form class="prestige-callback-form" method="POST" action="/callback">
+                <input type="hidden" name="propertyId" value="<%= property._id %>">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="tel" name="mobile" placeholder="Mobile*" required>
+                </div>
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="form-row">
+                    <textarea name="message" placeholder="Message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="prestige-btn prestige-btn-primary">Submit</button>
+            </form>
+        </section>
+    </main>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">

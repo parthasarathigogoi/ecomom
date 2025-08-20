@@ -3,72 +3,454 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC Advertising - Premium Advertising & Brand Solutions</title>
+    <title>Prestige Group | Top Builder in Bangalore | Real Estate Developers</title>
     <link rel="stylesheet" href="/css/prestige.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        .prestige-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+            .hero-content {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container flex items-center justify-between py-4">
-            <div class="flex items-center gap-4">
-                <img src="/images/prestige-logo.png" alt="Prestige Group Logo" class="h-16 w-auto header-logo-img" style="object-fit:contain;" />
-                <div class="logo font-serif text-2xl font-bold tracking-wide">Prestige Group</div>
+    <!-- Header -->
+    <header class="prestige-header-new">
+        <!-- Black Top Bar -->
+        <div class="prestige-top-bar" style="background: #000; padding: 15px 0; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: 70px; display: flex; align-items: center;">
+            <div class="prestige-container" style="width: 100%;">
+                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <div class="prestige-logo">
+                        <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.8rem; line-height: 1;">PRESTIGE</h2>
+                    </div>
+                    <nav class="prestige-nav">
+                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; gap: 40px; margin: 0; padding: 0; align-items: center;">
+                            <li><a href="/" class="prestige-nav-link active-nav" style="color: #d4af37; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;">Home</a></li>
+                            <li><a href="/all-projects" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">All Projects</a></li>
+                            <li><a href="/about-us" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">About Us</a></li>
+                            <li><a href="/blog" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Blog</a></li>
+                            <li><a href="/contact" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <nav class="nav-menu flex gap-8 text-lg font-medium">
-                <a href="/" class="active text-gold">Home</a>
-                <a href="/projects">All Projects</a>
-                <a href="/single-property">Single Property</a>
-                <a href="/about">About Us</a>
-                <a href="/blog">Blog</a>
-                <a href="/contact">Contact</a>
-            </nav>
-            <div class="flex gap-2">
-                <a href="/projects" class="btn btn-primary bg-gold px-6 py-2 rounded shadow-lg font-semibold">UPCOMING PROJECTS</a>
-                <button class="menu-toggle ml-4"><span class="icon-menu"></span></button>
+        </div>
+        
+        <!-- Enhanced Floating Enquiry Button -->
+        <div class="prestige-enquire-floating" style="position: fixed; top: 50%; right: 20px; transform: translateY(-50%); z-index: 1002;">
+            <button class="prestige-enquire-btn" style="background: linear-gradient(135deg, #d4af37, #b8941f); color: white; border: none; padding: 15px 25px; font-weight: 600; cursor: pointer; border-radius: 50px; box-shadow: 0 8px 25px rgba(212,175,55,0.4); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; display: flex; align-items: center; gap: 8px; writing-mode: horizontal-tb; animation: float 3s ease-in-out infinite;" onmouseover="this.style.transform='translateY(-50%) scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(212,175,55,0.5)'" onmouseout="this.style.transform='translateY(-50%) scale(1)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.4)'">
+                <i class="fas fa-phone" style="font-size: 16px;"></i>
+                <span>Enquire Now</span>
+            </button>
+        </div>
+        
+        <!-- Transparent Decorative Bar -->
+        <div class="prestige-transparent-bar" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 12px 0; position: fixed; top: 70px; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); height: 44px; display: flex; align-items: center;">
+            <div class="prestige-container">
+                <div class="prestige-decorative-content" style="height: 20px; background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.2) 50%, transparent 100%); border-radius: 10px;">
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="hero relative overflow-hidden" style="height: 600px;">
-        <img src="/images/hero-bg.jpg" alt="Prestige Pallavaram Gardens" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div class="container relative z-10 flex flex-col justify-center h-full">
-            <div class="max-w-2xl">
-                <h1 class="text-5xl font-bold text-white mb-6">FIND YOUR ELEMENT.</h1>
-                <p class="text-xl text-white mb-8">2, 3 & 4 Bed Homes starting at <span class="text-gold font-bold">1.2 Cr*</span><br>On prime 200 ft Pallavaram Thoraipakkam Radial Road</p>
-                <a href="/projects" class="btn btn-primary bg-gold text-black px-8 py-3 rounded-lg shadow-xl font-bold text-lg">UPCOMING PROJECTS</a>
-            </div>
-        </div>
-        <div class="absolute bottom-8 left-8 flex gap-4">
-            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
-                <span class="block text-lg font-semibold text-gold">Connectivity</span>
-            </div>
-            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
-                <span class="block text-lg font-semibold text-gold">Balance</span>
-            </div>
-            <div class="bg-white bg-opacity-80 px-6 py-4 rounded-lg shadow-lg">
-                <span class="block text-lg font-semibold text-gold">Mindfulness</span>
+    <!-- Hero Section -->
+    <section class="hero-main">
+        <div class="hero-background" style="background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; min-height: 100vh; display: flex; align-items: center; padding-top: 140px; position: relative; overflow: hidden;">
+            <!-- Subtle Background Animation -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(212,175,55,0.08) 0%, transparent 60%); animation: pulse 8s ease-in-out infinite;"></div>
+            
+            <div class="prestige-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 2;">
+                <div class="hero-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <div class="hero-badge" style="display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); padding: 10px 24px; border-radius: 30px; margin-bottom: 40px; animation: fadeInUp 0.8s ease-out; backdrop-filter: blur(10px);">
+                        <span style="color: #d4af37; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Est. 1986 • Premium Developer</span>
+                    </div>
+                    
+                    <h1 class="hero-title" style="font-size: 3.8rem; font-weight: 400; color: white; line-height: 1.2; margin-bottom: 25px; font-family: 'Playfair Display', serif; letter-spacing: -0.01em; animation: fadeInUp 0.8s ease-out 0.2s both;">
+                        Luxury Real Estate<br>
+                        <span style="font-weight: 700; color: #d4af37;">Redefined</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle" style="font-size: 1.15rem; color: rgba(255,255,255,0.9); margin-bottom: 45px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 400; animation: fadeInUp 0.8s ease-out 0.4s both;">
+                        Premium residential and commercial developments across India's major cities. <strong style="color: #d4af37;">300+ projects delivered</strong> with unmatched quality and innovation.
+                    </p>
+                    
+                    <div class="hero-actions" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both;">
+                        <a href="/all-projects" class="prestige-btn-primary" style="background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(212,175,55,0.3); transform: translateY(0); border: none; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(212,175,55,0.4)'; this.style.background='linear-gradient(135deg, #e6c547, #c9a520)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(212,175,55,0.3)'; this.style.background='linear-gradient(135deg, #d4af37, #b8941f)'">
+                            <span>View Projects</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="/contact" class="prestige-btn-secondary" style="border: 2px solid rgba(255,255,255,0.4); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; backdrop-filter: blur(15px); background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(255,255,255,0.18)'; this.style.borderColor='rgba(212,175,55,0.7)'; this.style.color='#d4af37'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.4)'; this.style.color='white'; this.style.transform='translateY(0)'">
+                            <span>Contact Us</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="hero-trust" style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15); animation: fadeInUp 0.8s ease-out 0.8s both;">
+                        <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">300+</div>
+                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Projects</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">37+</div>
+                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Years</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">15+</div>
+                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Cities</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Featured Projects</h2>
-                <p>Discover our exquisite range of residential properties tailored to your needs.</p>
+    <!-- Quick Stats Section -->
+    <section class="quick-stats" style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 80px 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(212,175,55,0.05) 0%, transparent 50%); pointer-events: none;"></div>
+        
+        <div class="prestige-container" style="position: relative; z-index: 2;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">🏆 Our Achievements</h2>
+                <p style="font-size: 1.2rem; color: #6c757d; max-width: 600px; margin: 0 auto; line-height: 1.6;">Trusted by thousands of families across India for over three decades</p>
             </div>
-            <div class="projects-grid">
-                <% projects.forEach(project => { %>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('<%= project.mainImage %>');"></div>
-                    <div class="project-content">
-                        <h3 class="project-title"><%= project.title %></h3>
-                        <p class="project-location"><%= project.city %></p>
-                        <p class="project-price">Starting at ₹<%= project.startingPrice %></p>
-                        <a href="/projects/<%= project._id %>" class="btn btn-outline">View Details</a>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 50px;">
+                <!-- Stat 1 -->
+                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🏗️</div>
+                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">300+</h3>
+                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Completed Projects</p>
+                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Residential & Commercial developments across India</p>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🥇</div>
+                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">#1</h3>
+                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Top Developer</p>
+                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Most trusted real estate brand in India</p>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🌍</div>
+                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">15+</h3>
+                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Major Cities</p>
+                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Pan-India presence with premium developments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional CTA Section -->
+    <section style="background: #f8f9fa; padding: 60px 0;">
+        <div class="prestige-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; font-weight: 600; color: #333; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Discover Your Dream Home</h2>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 40px; line-height: 1.6;">From luxury apartments to premium villas, explore our diverse portfolio of residential and commercial projects across India's major cities.</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="/all-projects" style="background: #d4af37; color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(212,175,55,0.3); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.4)'; this.style.background='#b8941f'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.3)'; this.style.background='#d4af37'">
+                        <i class="fas fa-building" style="font-size: 16px;"></i>
+                        View All Projects
+                    </a>
+                    <a href="/contact" style="border: 2px solid #d4af37; color: #d4af37; padding: 13px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; background: transparent; position: relative; overflow: hidden;" onmouseover="this.style.background='#d4af37'; this.style.color='white'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.3)'" onmouseout="this.style.background='transparent'; this.style.color='#d4af37'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                        <i class="fas fa-calendar-alt" style="font-size: 16px;"></i>
+                        Schedule Site Visit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-header">
+                <span class="about-label">ABOUT PRESTIGE GROUP</span>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-left">
+                    <div class="crisil-logo">
+                        <div style="background: #d4af37; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 600; font-size: 1.2rem;">CRISIL</div>
+                        <span class="crisil-text">An S&P Global Company</span>
+                    </div>
+                    
+                    <h2 class="about-title">Only CRISIL DA1+ rated<br>Real Estate Developer in India</h2>
+                    
+                    <p class="about-description">
+                        One of India's most trusted and respected names in Real Estate - The Prestige Group is synonymous with innovation and luxurious living. Since 1986, Prestige has helped build the face of Modern Urban India in its glorious globalized avatar by consistently introducing and creating state-of-the-art transformative real estate concepts, technologies and innovations.
+                    </p>
+                    
+                    <a href="/about-us" class="see-details-btn">SEE DETAILS →</a>
+                </div>
+                
+                <div class="about-right">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">38+</div>
+                            <div class="stat-label">Years of Excellence</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">300+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">180+</div>
+                            <div class="stat-label">Mn. Sq. Ft. Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">170+</div>
+                            <div class="stat-label">Mn. Sq. Ft. Underway</div>
+                        </div>
                     </div>
                 </div>
-                <% }); %>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Luxury Projects Carousel -->
+    <section class="luxury-projects" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 100px 0; position: relative; overflow: hidden;">
+        <!-- Elegant Background Elements -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 30%, rgba(212,175,55,0.03) 0%, transparent 50%), radial-gradient(circle at 30% 80%, rgba(212,175,55,0.02) 0%, transparent 50%); pointer-events: none;"></div>
+        
+        <div class="prestige-container" style="position: relative; z-index: 2;">
+            <!-- Luxury Header with Negative Space -->
+            <div style="text-align: center; margin-bottom: 80px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <span style="display: inline-block; background: rgba(212,175,55,0.1); color: #d4af37; padding: 8px 24px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase;">Premium Portfolio</span>
+                <h2 style="font-size: 3.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 25px; font-family: 'Playfair Display', serif; line-height: 1.2;">Exquisite Living Experiences</h2>
+                <p style="font-size: 1.2rem; color: #6c757d; line-height: 1.7; max-width: 600px; margin: 0 auto;">Discover our meticulously crafted developments across residential, commercial, hospitality, and retail segments</p>
+            </div>
+            
+            <!-- Interactive Segments Carousel -->
+            <div class="segments-carousel" style="margin-bottom: 80px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
+                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
+                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">RESIDENTIAL</h3>
+                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Luxury apartments, villas & premium homes</p>
+                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
+                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
+                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">COMMERCIAL</h3>
+                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Office spaces, IT parks & business centers</p>
+                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
+                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
+                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">HOSPITALITY</h3>
+                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Premium hotels & resort developments</p>
+                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
+                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
+                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">RETAIL</h3>
+                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Shopping malls & retail complexes</p>
+                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Luxury Cities Carousel -->
+            <div class="luxury-cities" style="margin-top: 60px;">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h3 style="font-size: 2.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">Pan-India Presence</h3>
+                    <p style="font-size: 1.1rem; color: #6c757d; max-width: 500px; margin: 0 auto; line-height: 1.6;">Discover premium developments across India's most vibrant cities</p>
+                </div>
+                
+                <!-- Interactive City Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
+                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Bangalore</h4>
+                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">19 Projects Available</p>
+                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
+                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Hyderabad</h4>
+                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">9 Projects Available</p>
+                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
+                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Mumbai</h4>
+                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">8 Projects Available</p>
+                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
+                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Cochin</h4>
+                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">6 Projects Available</p>
+                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
+                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Delhi NCR</h4>
+                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">3 Projects Available</p>
+                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                </div>
+                
+                <!-- Map Section -->
+                <div class="map-section">
+                    <div class="interactive-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15552.0!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBangalore%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1635789012345!5m2!1sen!2sus&zoom=5&center=20.5937,78.9629" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        
+                        <!-- Custom Map Overlay with City Markers -->
+                        <div class="map-overlay">
+                            <div class="city-marker" data-city="bangalore" style="top: 65%; left: 55%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Bangalore<br><span>19 Projects</span></div>
+                            </div>
+                            <div class="city-marker" data-city="hyderabad" style="top: 55%; left: 58%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Hyderabad<br><span>9 Projects</span></div>
+                            </div>
+                            <div class="city-marker" data-city="mumbai" style="top: 50%; left: 35%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Mumbai<br><span>8 Projects</span></div>
+                            </div>
+                            <div class="city-marker" data-city="cochin" style="top: 75%; left: 45%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Cochin<br><span>6 Projects</span></div>
+                            </div>
+                            <div class="city-marker" data-city="delhi" style="top: 25%; left: 50%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Delhi NCR<br><span>3 Projects</span></div>
+                            </div>
+                            <div class="city-marker" data-city="chennai" style="top: 70%; left: 58%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">Chennai<br><span>1 Project</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -96,27 +478,86 @@
         </div>
     </section>
 
-    <section class="section" style="background-color: var(--prestige-light-gray);">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Customers Say</h2>
-                <p>Hear from our satisfied customers who have made Prestige their home.</p>
+    <!-- Enhanced Testimonials Section -->
+    <section style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 80px 0; position: relative;">
+        <div class="prestige-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">What Our Customers Say</h2>
+                <p style="font-size: 1.1rem; color: #6c757d; max-width: 600px; margin: 0 auto; line-height: 1.6;">Hear from our satisfied customers who have made Prestige their home</p>
+                <div style="width: 60px; height: 3px; background: #d4af37; margin: 20px auto; border-radius: 2px;"></div>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                    <p style="font-style: italic; margin-bottom: 20px;">"Prestige Construction has truly exceeded our expectations. The quality of construction, attention to detail, and the overall living experience is exceptional. Our dream home is now a reality."</p>
-                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Rajesh Kumar</h4>
-                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige Pallavaram Gardens</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px;">
+                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
+                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">Prestige Construction has truly exceeded our expectations. The quality of construction, attention to detail, and the overall living experience is exceptional. Our dream home is now a reality.</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">RK</div>
+                        <div>
+                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Rajesh Kumar</h4>
+                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige Pallavaram Gardens</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                    <p style="font-style: italic; margin-bottom: 20px;">"The attention to detail and quality of construction is unmatched. The amenities provided are world-class. I highly recommend Prestige to anyone looking for their dream home."</p>
-                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Priya Sharma</h4>
-                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige Lakeside Habitat</p>
+                
+                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
+                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">The attention to detail and quality of construction is unmatched. The amenities provided are world-class. I highly recommend Prestige to anyone looking for their dream home.</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">PS</div>
+                        <div>
+                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Priya Sharma</h4>
+                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige Lakeside Habitat</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: white; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                    <p style="font-style: italic; margin-bottom: 20px;">"Living in a Prestige property has been an absolute pleasure. The community is vibrant, the facilities are excellent, and the location is perfect."</p>
-                    <h4 style="color: var(--prestige-secondary); margin-bottom: 5px;">- Arjun Patel</h4>
-                    <p style="font-size: 0.9rem; color: var(--prestige-gray);">Prestige West Woods</p>
+                
+                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
+                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">Living in a Prestige property has been an absolute pleasure. The community is vibrant, the facilities are excellent, and the location is perfect.</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">AP</div>
+                        <div>
+                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Arjun Patel</h4>
+                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige West Woods</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Client Logos Section -->
+            <div style="text-align: center; margin-top: 60px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 40px; font-family: 'Playfair Display', serif;">Trusted Partners & Certifications</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; align-items: center; opacity: 0.7;">
+                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
+                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <rect x="5" y="10" width="90" height="20" rx="4" fill="#d4af37"/>
+                             <text x="50" y="24" text-anchor="middle" fill="white" font-size="10" font-weight="bold">CRISIL</text>
+                         </svg>
+                     </div>
+                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
+                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <circle cx="20" cy="20" r="15" fill="#2c3e50"/>
+                             <text x="20" y="25" text-anchor="middle" fill="white" font-size="8" font-weight="bold">ISO</text>
+                             <text x="65" y="15" text-anchor="middle" fill="#2c3e50" font-size="8" font-weight="bold">CERTIFIED</text>
+                             <text x="65" y="25" text-anchor="middle" fill="#d4af37" font-size="6">Quality Management</text>
+                         </svg>
+                     </div>
+                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
+                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <rect x="10" y="5" width="80" height="30" rx="6" fill="#d4af37" stroke="#2c3e50" stroke-width="2"/>
+                             <text x="50" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="bold">RERA</text>
+                             <text x="50" y="28" text-anchor="middle" fill="white" font-size="6">REGISTERED</text>
+                         </svg>
+                     </div>
+                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
+                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <circle cx="25" cy="20" r="12" fill="#28a745"/>
+                             <path d="M20 20 L23 23 L30 16" stroke="white" stroke-width="2" fill="none"/>
+                             <text x="65" y="15" text-anchor="middle" fill="#28a745" font-size="8" font-weight="bold">GREEN</text>
+                             <text x="65" y="25" text-anchor="middle" fill="#28a745" font-size="8" font-weight="bold">BUILDING</text>
+                         </svg>
+                     </div>
                 </div>
             </div>
         </div>
@@ -165,40 +606,75 @@
     </div>
 </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>About AC Advertising</h4>
-                    <p>AC Advertising is a leading advertising agency, known for its commitment to creativity and innovation. With over 30 years of experience, we have delivered impactful campaigns across all major platforms.</p>
+                    <div class="footer-logo">
+                        <h3 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem;">PRESTIGE</h3>
+                    </div>
+                    <p class="footer-description">
+                        One of India's most trusted and respected names in Real Estate - The Prestige Group is synonymous with innovation and luxurious living.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/all-projects">Projects</a></li>
                         <li><a href="/blog">Blog</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Investors</h4>
-                    <ul>
-                        <li><a href="/investors">Financial Performance</a></li>
-                        <li><a href="/investors">Annual Report</a></li>
-                        <li><a href="/investors">ESG</a></li>
+                    <h4 class="footer-title">Projects</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Residential</a></li>
+                        <li><a href="#">Commercial</a></li>
+                        <li><a href="#">Hospitality</a></li>
+                        <li><a href="#">Retail</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><strong>Email:</strong> info@prestigeconstruction.com</p>
-                    <p><strong>Phone:</strong> +91 80 2559 1234</p>
-                    <p><strong>Address:</strong> The Falcon House, No. 1, Main Guard Cross Road, Bangalore - 560001</p>
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Prestige Falcon Tower, Brunton Road, Bangalore - 560025</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 80 4337 4337</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@prestigeconstructions.com</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 Prestige Construction. All rights reserved.</p>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Prestige Group. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Disclaimer</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -225,10 +701,10 @@
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) { // Adjust this value as needed
+            const header = document.querySelector('.prestige-header-new');
+            if (header && window.scrollY > 50) { // Adjust this value as needed
                 header.classList.add('scrolled');
-            } else {
+            } else if (header) {
                 header.classList.remove('scrolled');
             }
         });

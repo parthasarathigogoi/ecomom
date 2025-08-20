@@ -3,61 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Campaigns - AC Advertising</title>
+    <title>All Projects - Prestige Group</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/prestige.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo">AC Advertising</div>
+            <div class="logo">PRESTIGE</div>
             <nav class="nav-menu">
-                <a href="/">Home</a>
-                <a href="/projects" class="active">All Projects</a>
-                <a href="/about">About Us</a>
+                <a href="/" >Home</a>
+                <a href="/all-projects" class="active">All Projects</a>
+                <a href="/about-us">About Us</a>
                 <a href="/blog">Blog</a>
-                <a href="/contact">Contact Us</a>
+                <a href="/contact">Contact</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Our Campaigns</h1>
-            <p>Discover our portfolio of exceptional advertising campaigns that redefine brand impact</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="projects-grid">
+    <main class="prestige-main">
+        <aside class="prestige-sidebar">
+            <div class="sidebar-section">
+                <span class="sidebar-title active">All Properties</span>
+            </div>
+            <div class="sidebar-section">
+                <ul class="sidebar-list">
+                    <li>Bangalore <span class="sidebar-count">19 Projects Available</span></li>
+                    <li>Hyderabad <span class="sidebar-count">9 Projects Available</span></li>
+                    <li>Mumbai <span class="sidebar-count">8 Projects Available</span></li>
+                    <li>Cochin <span class="sidebar-count">6 Projects Available</span></li>
+                    <li>Delhi-NCR <span class="sidebar-count">3 Projects Available</span></li>
+                </ul>
+            </div>
+        </aside>
+        <section class="prestige-content">
+            <div class="prestige-header-row">
+                <h1 class="prestige-page-title">All Projects</h1>
+                <button class="prestige-btn prestige-btn-outline">Custom Search</button>
+            </div>
+            <div class="prestige-projects-grid">
                 <% projects.forEach(project => { %>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('<%= project.mainImage %>');"></div>
-                    <div class="project-content">
-                        <h3 class="project-title"><%= project.title %></h3>
-                        <p class="project-location"><%= project.city %></p>
-                        <p class="project-price">Starting at ₹<%= project.startingPrice %></p>
-                        <a href="/projects/<%= project._id %>" class="btn btn-outline">View Details</a>
+                <div class="prestige-card">
+                    <a href="/single-property/<%= project._id %>" class="prestige-card-image-link">
+                        <div class="prestige-card-image" style="background-image: url('<%= project.mainImage %>');">
+                            <span class="prestige-badge <%= project.status === 'Ongoing' ? 'prestige-badge-ongoing' : project.status === 'Completed' ? 'prestige-badge-completed' : 'prestige-badge-upcoming' %>"><%= project.status %></span>
+                        </div>
+                    </a>
+                    <div class="prestige-card-body">
+                        <h3 class="prestige-card-title"><%= project.title %></h3>
+                        <div class="prestige-card-location"><%= project.location %>, <%= project.city %></div>
+                        <div class="prestige-card-price"><%= project.startingPrice %></div>
+                        <div class="prestige-card-details">
+                            <span class="prestige-detail"><i class="icon-apartment"></i> <%= project.type %></span>
+                            <span class="prestige-detail"><i class="icon-bed"></i> <%= project.configuration %></span>
+                            <span class="prestige-detail"><i class="icon-area"></i> <%= project.area %></span>
+                        </div>
+                        <div class="prestige-card-actions">
+                            <a href="/single-property/<%= project._id %>" class="prestige-btn prestige-btn-primary">Enquire Now</a>
+                            <a href="/single-property/<%= project._id %>" class="prestige-btn prestige-btn-outline">Book a Site Visit</a>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                <h4>About AC Advertising</h4>
-                <p>AC Advertising is a leading advertising agency, known for its commitment to creativity and innovation. With over 30 years of experience, we have delivered impactful campaigns across all major platforms.</p>
+                <h4>About Prestige Group</h4>
+                <p>Prestige Group is a leading real estate developer, known for its commitment to luxury and innovation. With over 30 years of experience, we have delivered premium residential and commercial projects across major cities.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/all-projects">All Projects</a></li>
+                        <li><a href="/about-us">About Us</a></li>
                         <li><a href="/blog">Blog</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>

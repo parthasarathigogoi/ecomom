@@ -66,11 +66,17 @@ app.get('/admin/login', (req, res) => {
 });
 
 // Add routes for created pages
-app.get('/projects', (req, res) => {
-    res.render('all-projects');
+app.get('/all-projects', async (req, res) => {
+    try {
+        const projects = await Project.find();
+        res.render('all-projects', { projects });
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        res.render('all-projects', { projects: [] });
+    }
 });
 
-app.get('/projects/:id', async (req, res) => {
+app.get('/single-property/:id', async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
     if (!project) {
