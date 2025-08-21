@@ -1,29 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/blogs">Blog Posts</a></li>
-                    <li><a href="/admin/logout">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="content">
-            <h1>Welcome to the Admin Dashboard, <%= user.email %>!</h1>
-            <p>Use the navigation on the left to manage your content.</p>
-            <!-- Dashboard content goes here -->
-        </main>
-    </div>
-</body>
-</html>
+<h1>Welcome to the Admin Dashboard, <%= user.email %>!</h1>
+            <div class="card">
+                <h2>Welcome to the Admin Dashboard!</h2>
+                <p>Use the navigation on the left to manage your content.</p>
+            </div>
+
+            <div class="grid-container">
+                <div class="card">
+                    <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+                    <p class="stat-number" id="projectCount">Loading...</p>
+                    <a href="/admin/projects" class="btn btn-primary">Manage Projects</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-blog"></i> Blog Posts</h3>
+                    <p class="stat-number" id="blogCount">Loading...</p>
+                    <a href="/admin/blogs" class="btn btn-primary">Manage Blogs</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-file-alt"></i> Pages</h3>
+                    <p class="stat-number">5</p>
+                    <a href="#" class="btn btn-primary">Manage Pages</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-users"></i> Users</h3>
+                    <p class="stat-number">Loading...</p>
+                    <a href="#" class="btn btn-primary">Manage Users</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-images"></i> Media</h3>
+                    <p class="stat-number">Loading...</p>
+                    <a href="#" class="btn btn-primary">Manage Media</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Settings</h3>
+                    <p class="stat-number">Configurable</p>
+                    <a href="#" class="btn btn-primary">Manage Settings</a>
+                </div>
+            </div>
+            
+            <script>
+                // Fetch project count
+                fetch('/api/projects')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('projectCount').textContent = data.length;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching projects:', error);
+                        document.getElementById('projectCount').textContent = 'Error';
+                    });
+                
+                // Fetch blog count
+                fetch('/api/blogs')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('blogCount').textContent = data.length;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching blogs:', error);
+                        document.getElementById('blogCount').textContent = 'Error';
+                    });
+            </script>

@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Projects</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/blogs">Blog Posts</a></li>
-                    <li><a href="/admin/logout">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="content">
-            <h1>Manage Projects</h1>
+<h1>Manage Projects</h1>
             <a href="/admin/projects/edit" class="button">Add New Project</a>
             <table id="projectsTable">
                 <thead>
@@ -36,10 +14,7 @@
                     <!-- Projects will be loaded here by JavaScript -->
                 </tbody>
             </table>
-        </main>
-    </div>
-
-    <script>
+<script>
         async function fetchProjects() {
             try {
                 const response = await fetch('/api/projects');
@@ -67,10 +42,17 @@
         async function deleteProject(id) {
             if (confirm('Are you sure you want to delete this project?')) {
                 try {
+                    // Get token from cookie safely with error handling
+                    let token = '';
+                    const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
+                    if (tokenCookie) {
+                        token = tokenCookie.split('=')[1];
+                    }
+
                     const response = await fetch(`/api/projects/${id}`, {
                         method: 'DELETE',
                         headers: {
-                            'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                            'Authorization': `Bearer ${token}`
                         }
                     });
                     if (response.ok) {
@@ -87,5 +69,3 @@
 
         fetchProjects();
     </script>
-</body>
-</html>

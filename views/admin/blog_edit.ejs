@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= blogId ? 'Edit' : 'Add' %> Blog Post</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/blogs">Blog Posts</a></li>
-                    <li><a href="/admin/logout">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="content">
-            <h1><%= blogId ? 'Edit' : 'Add' %> Blog Post</h1>
+<h1><%= blogId ? 'Edit' : 'Add' %> Blog Post</h1>
             <form id="blogPostForm">
                 <div class="form-group">
                     <label for="title">Title:</label>
@@ -91,10 +69,17 @@
             const url = blogId ? `/api/blogs/${blogId}` : '/api/blogs';
 
             try {
+                // Get token from cookie safely with error handling
+                let token = '';
+                const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
+                if (tokenCookie) {
+                    token = tokenCookie.split('=')[1];
+                }
+
                 const response = await fetch(url, {
                     method: method,
                     headers: {
-                        'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                        'Authorization': `Bearer ${token}`
                     },
                     body: formData
                 });
@@ -115,5 +100,3 @@
         // Initial load
         loadBlogPostData();
     </script>
-</body>
-</html>

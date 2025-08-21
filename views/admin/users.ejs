@@ -1,0 +1,234 @@
+<%- layout('layout') -%>
+<%- style('admin-animations.css') -%>
+<%- script('admin-animations.js') -%>
+
+<div class="card">
+    <h2>User Management</h2>
+    <p>Manage user accounts and roles.</p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- User data will be loaded here -->
+                <tr>
+                    <td colspan="4">No users found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-actions">
+        <button id="addUserBtn" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add New User</button>
+    </div>
+</div>
+
+<div id="userModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Add/Edit User</h2>
+        <form id="userForm">
+            <input type="hidden" id="userId">
+            <div class="form-group">
+                <label for="userEmail">Email:</label>
+                <input type="email" id="userEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Password:</label>
+                <input type="password" id="userPassword">
+                <small>Leave blank if not changing password</small>
+            </div>
+            <div class="form-group">
+                <label for="userRole">Role:</label>
+                <select id="userRole">
+                    <option value="admin">Admin</option>
+                    <option value="editor">Editor</option>
+                    <option value="viewer">Viewer</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save User</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const userTableBody = document.querySelector('#userTableBody');
+    const addUserBtn = document.querySelector('#addUserBtn');
+    const userModal = document.querySelector('#userModal');
+    const closeButton = document.querySelector('.close-button');
+    const userForm = document.querySelector('#userForm');
+    const userIdInput = document.querySelector('#userId');
+    const userEmailInput = document.querySelector('#userEmail');
+    const userPasswordInput = document.querySelector('#userPassword');
+    const userRoleSelect = document.querySelector('#userRole');
+
+    // Open Modal
+    addUserBtn.addEventListener('click', () => {
+        userForm.reset();
+        userIdInput.value = '';
+        userPasswordInput.required = true; // Password is required for new users
+        userModal.style.display = 'block';
+    });
+
+    // Close Modal
+    closeButton.addEventListener('click', () => {
+        userModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == userModal) {
+            userModal.style.display = 'none';
+        }
+    });
+
+    // Fetch and display users
+    async function fetchUsers() {
+        try {
+            const response = await fetch('/api/users', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const users = await response.json();
+            userTableBody.innerHTML = '';
+            if (users.length === 0) {
+                userTableBody.innerHTML = '<tr><td colspan="4">No users found.</td></tr>';
+                return;
+            }
+            users.forEach(user => {
+                const row = `
+                    <tr>
+                        <td>${user.email}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>
+                        <td>
+                            <button class="btn btn-secondary btn-sm edit-user" data-id="${user._id}">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-user" data-id="${user._id}">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                userTableBody.innerHTML += row;
+            });
+
+            // Add event listeners for edit and delete buttons
+            document.querySelectorAll('.edit-user').forEach(button => {
+                button.addEventListener('click', (e) => editUser(e.target.dataset.id));
+            });
+            document.querySelectorAll('.delete-user').forEach(button => {
+                button.addEventListener('click', (e) => deleteUser(e.target.dataset.id));
+            });
+
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            showToast('Error fetching users.', 'error');
+        }
+    }
+
+    // Add/Edit User
+    userForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = userIdInput.value;
+        const email = userEmailInput.value;
+        const password = userPasswordInput.value;
+        const role = userRoleSelect.value;
+
+        const userData = { email, role };
+        if (password) {
+            userData.password = password;
+        }
+
+        try {
+            let response;
+            if (id) {
+                // Edit user
+                response = await fetch(`/api/users/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(userData)
+                });
+            } else {
+                // Add new user
+                response = await fetch('/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(userData)
+                });
+            }
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.msg || `HTTP error! status: ${response.status}`);
+            }
+
+            showToast(`User ${id ? 'updated' : 'added'} successfully!`, 'success');
+            userModal.style.display = 'none';
+            fetchUsers(); // Refresh list
+        } catch (error) {
+            console.error('Error saving user:', error);
+            showToast(`Error saving user: ${error.message}`, 'error');
+        }
+    });
+
+    // Edit User (populate form)
+    async function editUser(id) {
+        try {
+            const response = await fetch(`/api/users/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const user = await response.json();
+            userIdInput.value = user._id;
+            userEmailInput.value = user.email;
+            userRoleSelect.value = user.role;
+            userPasswordInput.value = ''; // Clear password field for security
+            userPasswordInput.required = false; // Password is not required for editing
+            userModal.style.display = 'block';
+        } catch (error) {
+            console.error('Error fetching user for edit:', error);
+            showToast('Error fetching user for edit.', 'error');
+        }
+    }
+
+    // Delete User
+    async function deleteUser(id) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            try {
+                const response = await fetch(`/api/users/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                showToast('User deleted successfully!', 'success');
+                fetchUsers(); // Refresh list
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                showToast('Error deleting user.', 'error');
+            }
+        }
+    }
+
+    // Initial fetch
+    fetchUsers();
+</script>

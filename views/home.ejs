@@ -1494,15 +1494,7 @@
             });
         }
         
-        function nextHeroSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-        
-        function previousHeroSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
+        // Hero slide functions are defined above - removing duplicates
         
         // Auto-advance slides
         if (slides.length > 0) {

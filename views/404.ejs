@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Prestige Group</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/prestige.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+        
+        .error-title {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .error-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: #d4af37;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #6c757d;
+            padding: 15px 30px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .error-content {
+                padding: 40px 20px;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="prestige-header-new">
+        <!-- Black Top Bar -->
+        <div class="prestige-top-bar" style="background: #000; padding: 15px 0; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: 70px; display: flex; align-items: center;">
+            <div class="prestige-container" style="width: 100%;">
+                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                    <nav class="prestige-nav">
+                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; justify-content: space-between; width: 100%; max-width: 800px; margin: 0; padding: 0 40px; align-items: center;">
+                            <li><a href="/" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Home</a></li>
+                            <li><a href="/all-projects" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">All Projects</a></li>
+                            <li><a href="/about-us" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">About Us</a></li>
+                            <li><a href="/blog" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Blog</a></li>
+                            <li><a href="/contact" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logo positioned between black and transparent sections -->
+        <div class="prestige-logo-bridge" style="position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1002; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 25px; border: 2px solid rgba(212,175,55,0.3);">
+            <div class="prestige-logo">
+                <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">PRESTIGE</h2>
+            </div>
+        </div>
+        
+        <!-- Transparent Decorative Bar -->
+        <div class="prestige-transparent-bar" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 0; position: fixed; top: 70px; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div class="prestige-container" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="prestige-decorative-content" style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 300;">
+                    <span>Premium Real Estate Solutions</span>
+                    <span>•</span>
+                    <span>Luxury Living Redefined</span>
+                    <span>•</span>
+                    <span>Excellence in Construction</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="error-container" style="padding-top: 120px;">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-message">
+                Sorry, the page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+            </p>
+            <div class="error-buttons">
+                <a href="/" class="btn-primary">
+                    <i class="fas fa-home"></i>
+                    Go Home
+                </a>
+                <a href="/all-projects" class="btn-secondary">
+                    <i class="fas fa-building"></i>
+                    View Projects
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll behavior
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.prestige-header-new');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

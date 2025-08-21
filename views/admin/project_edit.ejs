@@ -1,41 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= projectId ? 'Edit' : 'Add' %> Project</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <ul>
-                    <li><a href="/admin/dashboard">Dashboard</a></li>
-                    <li><a href="/admin/projects">Projects</a></li>
-                    <li><a href="/admin/blogs">Blog Posts</a></li>
-                    <li><a href="/admin/logout">Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="content">
-            <h1><%= projectId ? 'Edit' : 'Add' %> Project</h1>
+<h1><%= projectId ? 'Edit' : 'Add' %> Project</h1>
             <form id="projectForm">
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" required>
                 </div>
                 <div class="form-group">
-                    <label for="city">City/Location:</label>
+                    <label for="city">City:</label>
                     <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="configuration">Configuration:</label>
+                    <input type="text" id="configuration" name="configuration" required placeholder="e.g., 2BHK, 3BHK, etc.">
                 </div>
                 <div class="form-group">
                     <label for="type">Type:</label>
                     <select id="type" name="type" required>
-                        <option value="Residential">Residential</option>
+                        <option value="Apartments">Apartments</option>
+                        <option value="Villas">Villas</option>
+                        <option value="Plots">Plots</option>
                         <option value="Commercial">Commercial</option>
-                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -90,6 +77,8 @@
 
                     document.getElementById('title').value = project.title;
                     document.getElementById('city').value = project.city;
+                    document.getElementById('location').value = project.location;
+                    document.getElementById('configuration').value = project.configuration;
                     document.getElementById('type').value = project.type;
                     document.getElementById('shortDescription').value = project.shortDescription;
                     document.getElementById('longDescription').value = project.longDescription;
@@ -139,13 +128,24 @@
             const url = projectId ? `/api/projects/${projectId}` : '/api/projects';
 
             try {
+                // Get token from cookie safely with error handling
+                let token = '';
+                const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
+                if (tokenCookie) {
+                    token = tokenCookie.split('=')[1];
+                }
+
                 const response = await fetch(url, {
                     method: method,
                     headers: {
-                        'Authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
+                        'Authorization': `Bearer ${token}`
+                        // Note: Do not set Content-Type header when sending FormData
+                        // Browser will automatically set the correct Content-Type with boundary
                     },
                     body: formData
                 });
+                
+                console.log('Response status:', response.status);
 
                 if (response.ok) {
                     alert('Project saved successfully!');
@@ -163,5 +163,3 @@
         // Initial load
         loadProjectData();
     </script>
-</body>
-</html>

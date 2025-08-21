@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+<% layout('admin/layout') %>
+<% title = 'Admin Login' %>
     <div class="login-container">
         <h2>Admin Login</h2>
         <form id="loginForm">
@@ -44,8 +37,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Store token in a cookie (or localStorage)
-                    document.cookie = `token=${data.token}; path=/; max-age=3600`; // 1 hour expiry
+                    // Token is already set as a cookie by the server
                     window.location.href = '/admin/dashboard';
                 } else {
                     messageElement.textContent = data.message || 'Login failed';
@@ -56,5 +48,3 @@
             }
         });
     </script>
-</body>
-</html>

@@ -1,0 +1,226 @@
+<!-- Include TinyMCE for rich text editing -->
+<% extraStyles = '<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>' %>
+            <h1>Edit <%= pageName.charAt(0).toUpperCase() + pageName.slice(1) %> Page</h1>
+            <div id="message" class="message" style="display: none;"></div>
+            
+            <form id="pageForm">
+                <div class="form-group">
+                    <label for="title">Page Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="metaDescription">Meta Description</label>
+                    <textarea id="metaDescription" name="metaDescription" rows="3"></textarea>
+                    <small>Used for SEO. Recommended length: 150-160 characters.</small>
+                </div>
+                
+                <!-- Dynamic content fields based on page type -->
+                <div id="dynamicFields">
+                    <!-- Fields will be added dynamically based on page type -->
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        // Initialize TinyMCE for rich text editing
+        function initTinyMCE(selector) {
+            tinymce.init({
+                selector: selector,
+                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                height: 300
+            });
+        }
+        
+        // Page type specific fields
+        const pageFields = {
+            home: [
+                { name: 'heroTitle', label: 'Hero Title', type: 'text' },
+                { name: 'heroSubtitle', label: 'Hero Subtitle', type: 'text' },
+                { name: 'heroImage', label: 'Hero Image URL', type: 'text' },
+                { name: 'featuredProjectsTitle', label: 'Featured Projects Section Title', type: 'text' },
+                { name: 'aboutSectionTitle', label: 'About Section Title', type: 'text' },
+                { name: 'aboutSectionContent', label: 'About Section Content', type: 'richtext' },
+                { name: 'testimonialsSectionTitle', label: 'Testimonials Section Title', type: 'text' }
+            ],
+            about: [
+                { name: 'mainHeading', label: 'Main Heading', type: 'text' },
+                { name: 'mainContent', label: 'Main Content', type: 'richtext' },
+                { name: 'teamSectionTitle', label: 'Team Section Title', type: 'text' },
+                { name: 'missionStatement', label: 'Mission Statement', type: 'richtext' },
+                { name: 'visionStatement', label: 'Vision Statement', type: 'richtext' }
+            ],
+            contact: [
+                { name: 'mainHeading', label: 'Main Heading', type: 'text' },
+                { name: 'introText', label: 'Introduction Text', type: 'richtext' },
+                { name: 'address', label: 'Address', type: 'text' },
+                { name: 'phone', label: 'Phone Number', type: 'text' },
+                { name: 'email', label: 'Email Address', type: 'text' },
+                { name: 'mapEmbedCode', label: 'Google Maps Embed Code', type: 'textarea' }
+            ],
+            projects: [
+                { name: 'mainHeading', label: 'Main Heading', type: 'text' },
+                { name: 'introText', label: 'Introduction Text', type: 'richtext' }
+            ],
+            blog: [
+                { name: 'mainHeading', label: 'Main Heading', type: 'text' },
+                { name: 'introText', label: 'Introduction Text', type: 'richtext' }
+            ]
+        };
+        
+        // Get page name from URL
+        const pageName = '<%= pageName %>';
+        const dynamicFields = document.getElementById('dynamicFields');
+        
+        // Generate fields based on page type
+        function generateFields() {
+            if (pageFields[pageName]) {
+                pageFields[pageName].forEach(field => {
+                    const fieldContainer = document.createElement('div');
+                    fieldContainer.className = 'form-group';
+                    
+                    const label = document.createElement('label');
+                    label.setAttribute('for', field.name);
+                    label.textContent = field.label;
+                    fieldContainer.appendChild(label);
+                    
+                    let input;
+                    
+                    switch(field.type) {
+                        case 'richtext':
+                            input = document.createElement('textarea');
+                            input.className = 'richtext';
+                            break;
+                        case 'textarea':
+                            input = document.createElement('textarea');
+                            input.rows = 4;
+                            break;
+                        default: // text
+                            input = document.createElement('input');
+                            input.type = 'text';
+                    }
+                    
+                    input.id = field.name;
+                    input.name = field.name;
+                    fieldContainer.appendChild(input);
+                    
+                    dynamicFields.appendChild(fieldContainer);
+                });
+                
+                // Initialize TinyMCE for rich text fields
+                initTinyMCE('.richtext');
+            }
+        }
+        
+        // Fetch page data
+        async function fetchPageData() {
+            try {
+                const response = await fetch(`/api/pages/${pageName}`);
+                if (response.ok) {
+                    const pageData = await response.json();
+                    populateForm(pageData);
+                } else if (response.status === 404) {
+                    // Page doesn't exist yet, just generate empty form
+                    console.log('Page not found, creating new page');
+                } else {
+                    showMessage('Error loading page data', 'error');
+                }
+            } catch (error) {
+                console.error('Error fetching page data:', error);
+                showMessage('Error loading page data', 'error');
+            }
+        }
+        
+        // Populate form with page data
+        function populateForm(pageData) {
+            document.getElementById('title').value = pageData.title || '';
+            document.getElementById('metaDescription').value = pageData.metaDescription || '';
+            
+            // Populate dynamic fields
+            if (pageData.content) {
+                Object.keys(pageData.content).forEach(key => {
+                    const field = document.getElementById(key);
+                    if (field) {
+                        if (field.classList.contains('richtext')) {
+                            // For TinyMCE fields
+                            tinymce.get(key).setContent(pageData.content[key] || '');
+                        } else {
+                            field.value = pageData.content[key] || '';
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Save page data
+        async function savePage(formData) {
+            try {
+                const response = await fetch(`/api/pages/${pageName}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    showMessage('Page saved successfully!', 'success');
+                } else {
+                    const error = await response.json();
+                    showMessage(error.message || 'Error saving page', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving page:', error);
+                showMessage('Error saving page', 'error');
+            }
+        }
+        
+        // Show message
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = `message ${type}`;
+            messageEl.style.display = 'block';
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Handle form submission
+        document.getElementById('pageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const title = document.getElementById('title').value;
+            const metaDescription = document.getElementById('metaDescription').value;
+            const content = {};
+            
+            // Get values from dynamic fields
+            if (pageFields[pageName]) {
+                pageFields[pageName].forEach(field => {
+                    if (field.type === 'richtext') {
+                        content[field.name] = tinymce.get(field.name).getContent();
+                    } else {
+                        content[field.name] = document.getElementById(field.name).value;
+                    }
+                });
+            }
+            
+            await savePage({ title, content, metaDescription });
+        });
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            generateFields();
+            fetchPageData();
+        });
+    </script>

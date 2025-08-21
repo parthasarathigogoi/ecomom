@@ -48,39 +48,144 @@
         </div>
     </header>
 
-    <section class="prestige-hero">
-        <div class="prestige-hero-bg woody-gradient"></div>
-        <div class="prestige-hero-overlay"></div>
-        <div class="prestige-hero-content">
-            <h1 class="prestige-hero-title">Our Blog</h1>
-            <p class="prestige-hero-subtitle">Stay updated with the latest trends and insights in real estate and luxury living</p>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main class="woody-section" style="padding-top: 100px; min-height: 100vh;">
+        <!-- Hero Section -->
+        <section class="blog-hero" style="padding: 40px 0 60px; text-align: center; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05)); position: relative; overflow: hidden;">
+            <div class="prestige-container">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: var(--prestige-primary); margin-bottom: 15px;">Our Blog</h1>
+                <div class="title-underline" style="width: 60px; height: 4px; background: linear-gradient(90deg, var(--prestige-secondary), var(--prestige-primary)); margin: 15px auto 25px;"></div>
+                <p style="font-size: 1.1rem; color: var(--prestige-text); max-width: 650px; margin: 0 auto; line-height: 1.6;">Discover the latest insights, market trends, and expert advice from the world of premium real estate and luxury living.</p>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="hero-decoration" style="position: absolute; top: 20px; right: 20px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent); border-radius: 50%; z-index: 1;"></div>
+            <div class="hero-decoration" style="position: absolute; bottom: 20px; left: 20px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent); border-radius: 50%; z-index: 1;"></div>
+        </section>
 
-    <section class="section woody-section">
-        <div class="container">
-            <% if (Array.isArray(blogs) && blogs.length > 0) { %>
-            <div class="blogs-grid">
-                <% blogs.forEach(blog => { %>
-                <div class="blog-card">
-                    <div class="blog-image" style="background-image: url('<%= blog.coverImage %>');"></div>
-                    <div class="blog-content">
-                        <h3 class="blog-title"><%= blog.title %></h3>
-                        <p class="blog-date"><%= new Date(blog.createdAt || blog.date).toDateString() %></p>
-                        <p class="blog-description"><%= blog.shortDescription %></p>
-                        <a href="/blog/<%= blog._id %>" class="prestige-btn prestige-btn-outline">Read More</a>
+        <!-- Featured Categories -->
+        <section class="blog-categories" style="padding: 50px 0; background: rgba(248, 249, 250, 0.5);">
+            <div class="prestige-container">
+                <div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;">
+                    <div class="category-item" style="padding: 25px 20px; text-align: center; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <div class="category-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-home" style="color: white; font-size: 1.2rem;"></i>
+                        </div>
+                        <h4 style="color: var(--prestige-primary); margin-bottom: 8px; font-size: 1rem;">Market Insights</h4>
+                        <p style="color: var(--prestige-text); font-size: 0.85rem; margin: 0;">Latest market trends</p>
+                    </div>
+                    
+                    <div class="category-item" style="padding: 25px 20px; text-align: center; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <div class="category-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-chart-line" style="color: white; font-size: 1.2rem;"></i>
+                        </div>
+                        <h4 style="color: var(--prestige-primary); margin-bottom: 8px; font-size: 1rem;">Investment Tips</h4>
+                        <p style="color: var(--prestige-text); font-size: 0.85rem; margin: 0;">Smart investment strategies</p>
+                    </div>
+                    
+                    <div class="category-item" style="padding: 25px 20px; text-align: center; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <div class="category-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-key" style="color: white; font-size: 1.2rem;"></i>
+                        </div>
+                        <h4 style="color: var(--prestige-primary); margin-bottom: 8px; font-size: 1rem;">Buying Guide</h4>
+                        <p style="color: var(--prestige-text); font-size: 0.85rem; margin: 0;">Expert buying advice</p>
+                    </div>
+                    
+                    <div class="category-item" style="padding: 25px 20px; text-align: center; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <div class="category-icon" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-star" style="color: white; font-size: 1.2rem;"></i>
+                        </div>
+                        <h4 style="color: var(--prestige-primary); margin-bottom: 8px; font-size: 1rem;">Luxury Living</h4>
+                        <p style="color: var(--prestige-text); font-size: 0.85rem; margin: 0;">Premium lifestyle tips</p>
                     </div>
                 </div>
-                <% }); %>
             </div>
-            <% } else { %>
-              <div class="section-title" style="color:#fff; text-align:center;">
-                <h2>No posts yet</h2>
-                <p>New insights are being crafted. Please check back soon.</p>
-              </div>
-            <% } %>
-        </div>
-    </section>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="blog-posts" style="padding: 60px 0 80px;">
+            <div class="prestige-container">
+                <% if (Array.isArray(blogs) && blogs.length > 0) { %>
+                    <!-- Section Header -->
+                    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--prestige-primary); margin-bottom: 15px;">Latest Articles</h2>
+                        <div class="title-underline" style="width: 50px; height: 3px; background: linear-gradient(90deg, var(--prestige-secondary), var(--prestige-primary)); margin: 0 auto 20px;"></div>
+                        <p style="color: var(--prestige-text); max-width: 500px; margin: 0 auto; line-height: 1.6;">Stay informed with our latest insights and expert analysis</p>
+                    </div>
+                    
+                    <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px;">
+                        <% blogPosts.forEach((blog, index) => { %>
+                            <article class="blog-card woody-card" style="border-radius: 20px; overflow: hidden; transition: all 0.3s ease; position: relative; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.1);">
+                                <div class="blog-image" style="height: 220px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                                    <% if (blog.coverImage) { %>
+                                        <img src="<%= blog.coverImage %>" alt="<%= blog.title %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                                    <% } else { %>
+                                        <div class="placeholder-content" style="text-align: center;">
+                                            <i class="fas fa-newspaper" style="font-size: 2.5rem; color: var(--prestige-secondary); opacity: 0.6; margin-bottom: 10px; display: block;"></i>
+                                            <span style="color: var(--prestige-text); font-size: 0.9rem;">Article Image</span>
+                                        </div>
+                                    <% } %>
+                                    
+                                    <!-- Featured Badge for first post -->
+                                    <% if (index === 0) { %>
+                                        <div class="featured-badge" style="position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                                            Featured
+                                        </div>
+                                    <% } %>
+                                </div>
+                                
+                                <div class="blog-content" style="padding: 30px;">
+                                    <div class="blog-meta" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; font-size: 0.85rem;">
+                                        <div class="meta-left" style="display: flex; align-items: center; gap: 15px; color: var(--prestige-secondary);">
+                                            <span><i class="fas fa-calendar" style="margin-right: 5px;"></i><%= new Date(blog.createdAt || blog.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                                            <span><i class="fas fa-user" style="margin-right: 5px;"></i>Admin</span>
+                                        </div>
+                                        <div class="reading-time" style="color: var(--prestige-text); opacity: 0.7;">
+                                            <i class="fas fa-clock" style="margin-right: 5px;"></i>5 min read
+                                        </div>
+                                    </div>
+                                    
+                                    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--prestige-primary); margin-bottom: 12px; line-height: 1.4; font-weight: 600;"><%= blog.title %></h2>
+                                    
+                                    <p style="color: var(--prestige-text); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;"><%= blog.shortDescription %></p>
+                                    
+                                    <div class="card-footer" style="display: flex; align-items: center; justify-content: space-between; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+                                        <a href="/blog/<%= blog._id %>" class="read-more-btn" style="display: inline-flex; align-items: center; color: var(--prestige-secondary); font-weight: 600; text-decoration: none; transition: all 0.3s ease; font-size: 0.9rem;">
+                                            Read Article <i class="fas fa-arrow-right" style="margin-left: 8px; transition: transform 0.3s ease;"></i>
+                                        </a>
+                                        
+                                        <div class="social-share" style="display: flex; gap: 10px;">
+                                            <button class="share-btn" style="width: 32px; height: 32px; border: 1px solid rgba(212, 175, 55, 0.3); background: transparent; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--prestige-secondary); cursor: pointer; transition: all 0.3s ease;">
+                                                <i class="fas fa-share-alt" style="font-size: 0.8rem;"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        <% }); %>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="load-more" style="text-align: center; margin-top: 50px;">
+                        <button class="prestige-btn" style="padding: 12px 30px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); color: white; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Load More Articles
+                        </button>
+                    </div>
+                <% } else { %>
+                    <div class="no-posts" style="text-align: center; padding: 80px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div class="no-posts-icon" style="width: 100px; height: 100px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+                            <i class="fas fa-newspaper" style="font-size: 2.5rem; color: var(--prestige-secondary); opacity: 0.6;"></i>
+                        </div>
+                        <h3 style="font-family: 'Playfair Display', serif; color: var(--prestige-primary); margin-bottom: 15px; font-size: 1.8rem;">Coming Soon</h3>
+                        <p style="color: var(--prestige-text); max-width: 400px; margin: 0 auto 25px; line-height: 1.6;">We're crafting exceptional content to share the latest insights and trends in luxury real estate. Stay tuned for our upcoming articles!</p>
+                        <button class="prestige-btn" style="padding: 10px 25px; background: linear-gradient(135deg, var(--prestige-secondary), var(--prestige-primary)); color: white; border: none; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                            Notify Me
+                        </button>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
 
     <script>
       window.addEventListener('scroll', function(){
