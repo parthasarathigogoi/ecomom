@@ -6,96 +6,623 @@
     <title><%= property.title %> - Prestige Group</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/prestige.css">
+    <style>
+        .property-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+        }
+        
+        .property-header {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0.05) 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        
+        .property-title {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .property-location {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+        
+        .property-price {
+            font-size: 2rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .property-quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .quick-info-item {
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .quick-info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .quick-info-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .property-gallery {
+            margin-bottom: 40px;
+        }
+        
+        .gallery-main {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(212,175,55,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        
+        .gallery-thumb {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-thumb:hover,
+        .gallery-thumb.active {
+            border-color: #d4af37;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+            transform: scale(1.05);
+        }
+        
+        .property-details {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .details-main {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(212,175,55,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .details-sidebar {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 8px;
+            height: fit-content;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        
+        .description {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        
+        .amenity-item i {
+            color: #28a745;
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .specifications {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .spec-value {
+            color: #666;
+        }
+        
+        .contact-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #1a1a1a;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(212,175,55,0.2);
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #c9a96e 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #c9a96e 0%, #b8985d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+        }
+        
+        .highlights {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-item i {
+            color: #28a745;
+            margin-right: 10px;
+        }
+        
+        .simple-header {
+            background: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .simple-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .simple-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+        
+        .simple-nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+        
+        .simple-nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .simple-nav-menu a:hover {
+            color: #2c5aa0;
+        }
+        
+        @media (max-width: 768px) {
+            .property-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .property-title {
+                font-size: 2rem;
+            }
+            
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .simple-nav-menu {
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">PRESTIGE</div>
-            <nav class="nav-menu">
-                <a href="/">Home</a>
-                <a href="/all-projects">All Projects</a>
-                <a href="/about-us">About Us</a>
-                <a href="/blog">Blog</a>
-                <a href="/contact">Contact</a>
-            </nav>
+    <header class="prestige-header-new">
+        <!-- Black Top Bar -->
+        <div class="prestige-top-bar" style="background: #000; padding: 15px 0; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: 70px; display: flex; align-items: center;">
+            <div class="prestige-container" style="width: 100%;">
+                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                    <nav class="prestige-nav">
+                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; justify-content: space-between; width: 100%; max-width: 800px; margin: 0; padding: 0 40px; align-items: center;">
+                            <li><a href="/" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Home</a></li>
+                            <li><a href="/all-projects" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">All Projects</a></li>
+                            <li><a href="/about-us" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">About Us</a></li>
+                            <li><a href="/blog" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Blog</a></li>
+                            <li><a href="/contact" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logo positioned between black and transparent sections -->
+        <div class="prestige-logo-bridge" style="position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1002; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 25px; border: 2px solid rgba(212,175,55,0.3);">
+            <div class="prestige-logo">
+                <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">PRESTIGE</h2>
+            </div>
+        </div>
+        
+        <!-- Transparent Decorative Bar -->
+        <div class="prestige-transparent-bar" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 12px 0; position: fixed; top: 70px; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); height: 44px; display: flex; align-items: center;">
+            <div class="prestige-container">
+                <div class="prestige-decorative-content" style="height: 20px; background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.2) 50%, transparent 100%); border-radius: 10px;">
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="prestige-property-main">
-        <section class="prestige-property-hero">
-            <img src="<%= property.mainImage %>" alt="<%= property.title %>" class="prestige-hero-image">
-            <div class="prestige-property-sidebar">
-                <div class="prestige-property-info">
-                    <h1 class="prestige-property-title"><%= property.title %></h1>
-                    <div class="prestige-property-location"><%= property.location %></div>
-                    <div class="prestige-property-rera">RERA No: <%= property.rera %></div>
-                    <div class="prestige-property-price">₹<%= property.price %> Onwards</div>
-                    <div class="prestige-property-details">
-                        <span class="prestige-detail"><i class="icon-apartment"></i> <%= property.type %></span>
-                        <span class="prestige-detail"><i class="icon-area"></i> <%= property.developmentSize %></span>
-                        <span class="prestige-detail"><i class="icon-units"></i> <%= property.totalUnits %> Units</span>
-                    </div>
-                    <a href="tel:<%= property.phone %>" class="prestige-btn prestige-btn-primary prestige-property-phone"> <i class="icon-phone"></i> <%= property.phone %></a>
-                    <a href="<%= property.clearanceDocUrl %>" class="prestige-btn prestige-btn-outline" target="_blank">Environmental Clearance</a>
-                </div>
+    <div class="property-container" style="margin-top: 140px;">
+        <!-- Property Header -->
+        <div class="property-header">
+            <h1 class="property-title"><%= property.title %></h1>
+            <div class="property-location">
+                <i class="fas fa-map-marker-alt"></i> <%= property.location %><% if (property.city) { %>, <%= property.city %><% } %>
             </div>
-        </section>
-        <section class="prestige-property-gallery">
-            <div class="prestige-gallery-thumbnails">
+            <div class="property-price">₹<%= property.startingPrice || property.price %> Onwards</div>
+            
+            <div class="property-quick-info">
+                <div class="quick-info-item">
+                    <div class="quick-info-label">Property Type</div>
+                    <div class="quick-info-value"><%= property.type %></div>
+                </div>
+                <% if (property.configuration) { %>
+                <div class="quick-info-item">
+                    <div class="quick-info-label">Configuration</div>
+                    <div class="quick-info-value"><%= property.configuration %></div>
+                </div>
+                <% } %>
+                <% if (property.area) { %>
+                <div class="quick-info-item">
+                    <div class="quick-info-label">Area</div>
+                    <div class="quick-info-value"><%= property.area %></div>
+                </div>
+                <% } %>
+                <% if (property.reraNumber) { %>
+                <div class="quick-info-item">
+                    <div class="quick-info-label">RERA Number</div>
+                    <div class="quick-info-value"><%= property.reraNumber %></div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="property-gallery">
+            <% if (property.mainImage) { %>
+            <img src="<%= property.mainImage %>" alt="<%= property.title %>" class="gallery-main" id="mainImage">
+            <% } %>
+            
+            <% if (property.galleryImages && property.galleryImages.length > 0) { %>
+            <div class="gallery-thumbnails">
+                <% if (property.mainImage) { %>
+                <img src="<%= property.mainImage %>" alt="Main Image" class="gallery-thumb active" onclick="changeMainImage(this.src)">
+                <% } %>
                 <% property.galleryImages.forEach(image => { %>
-                    <img src="<%= image %>" alt="Gallery Image" class="prestige-gallery-thumbnail">
+                <img src="<%= image %>" alt="Gallery Image" class="gallery-thumb" onclick="changeMainImage(this.src)">
                 <% }); %>
             </div>
-        </section>
-        <section class="prestige-property-description">
-            <h2>About the Project</h2>
-            <p><%= property.description %></p>
-        </section>
-        <section class="prestige-callback-form-section">
-            <h3>Request a Callback</h3>
-            <form class="prestige-callback-form" method="POST" action="/callback">
-                <input type="hidden" name="propertyId" value="<%= property._id %>">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="tel" name="mobile" placeholder="Mobile*" required>
+            <% } %>
+        </div>
+
+        <!-- Property Details -->
+        <div class="property-details">
+            <div class="details-main">
+                <h2 class="section-title">About This Property</h2>
+                <div class="description">
+                    <%= property.longDescription || property.shortDescription || property.description %>
                 </div>
-                <div class="form-row">
-                    <input type="email" name="email" placeholder="Email">
+
+                <!-- Specifications -->
+                <div class="specifications">
+                    <h3 class="section-title">Specifications</h3>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Property Type:</span>
+                            <span class="spec-value"><%= property.type %></span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location:</span>
+                            <span class="spec-value"><%= property.location %><% if (property.city) { %>, <%= property.city %><% } %></span>
+                        </div>
+                        <% if (property.configuration) { %>
+                        <div class="spec-item">
+                            <span class="spec-label">Configuration:</span>
+                            <span class="spec-value"><%= property.configuration %></span>
+                        </div>
+                        <% } %>
+                        <% if (property.area) { %>
+                        <div class="spec-item">
+                            <span class="spec-label">Area:</span>
+                            <span class="spec-value"><%= property.area %></span>
+                        </div>
+                        <% } %>
+                        <% if (property.reraNumber) { %>
+                        <div class="spec-item">
+                            <span class="spec-label">RERA Number:</span>
+                            <span class="spec-value"><%= property.reraNumber %></span>
+                        </div>
+                        <% } %>
+                        <% if (property.status) { %>
+                        <div class="spec-item">
+                            <span class="spec-label">Status:</span>
+                            <span class="spec-value"><%= property.status %></span>
+                        </div>
+                        <% } %>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <textarea name="message" placeholder="Message" rows="3"></textarea>
+
+                <!-- Amenities -->
+                <% if (property.amenities && property.amenities.length > 0) { %>
+                <h3 class="section-title">Amenities</h3>
+                <div class="amenities-grid">
+                    <% property.amenities.forEach(amenity => { %>
+                    <div class="amenity-item">
+                        <i class="fas fa-check"></i>
+                        <span><%= amenity %></span>
+                    </div>
+                    <% }); %>
                 </div>
-                <button type="submit" class="prestige-btn prestige-btn-primary">Submit</button>
-            </form>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                <h4>About AC Advertising</h4>
-                <p>AC Advertising is a leading advertising agency, known for its commitment to creativity and innovation. With over 30 years of experience, we have delivered impactful campaigns across all major platforms.</p>
+                <% } %>
+            </div>
+
+            <div class="details-sidebar">
+                <!-- Highlights -->
+                <% if (property.highlights && property.highlights.length > 0) { %>
+                <div class="highlights">
+                    <h3 class="section-title">Key Highlights</h3>
+                    <% property.highlights.forEach(highlight => { %>
+                    <div class="highlight-item">
+                        <i class="fas fa-star"></i>
+                        <span><%= highlight %></span>
+                    </div>
+                    <% }); %>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><strong>Email:</strong> info@prestigeconstruction.com</p>
-                    <p><strong>Phone:</strong> +91 80 2559 1234</p>
+                <% } %>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 class="section-title">Request Callback</h3>
+                    <form method="POST" action="/callback">
+                        <input type="hidden" name="propertyId" value="<%= property._id %>">
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number *</label>
+                            <input type="tel" id="mobile" name="mobile" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Request
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Prestige Construction. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Simple Footer -->
+    <footer style="background: #f8f9fa; padding: 40px 0; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <h4 style="color: #2c5aa0; margin-bottom: 15px;">PRESTIGE GROUP</h4>
+                    <p style="color: #666; line-height: 1.6;">India's leading real estate developer, crafting premium residential and commercial spaces across major cities.</p>
+                </div>
+                
+                <div>
+                    <h4 style="color: #333; margin-bottom: 15px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="/" style="color: #666; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/all-projects" style="color: #666; text-decoration: none;">All Projects</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/about-us" style="color: #666; text-decoration: none;">About Us</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/blog" style="color: #666; text-decoration: none;">Blog</a></li>
+                        <li style="margin-bottom: 8px;"><a href="/contact" style="color: #666; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: #333; margin-bottom: 15px;">Contact Info</h4>
+                    <p style="color: #666; margin-bottom: 8px;"><i class="fas fa-envelope" style="margin-right: 8px;"></i> info@prestigegroup.com</p>
+                    <p style="color: #666; margin-bottom: 8px;"><i class="fas fa-phone" style="margin-right: 8px;"></i> +91 80 2559 1234</p>
+                    <p style="color: #666;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Bangalore, Karnataka, India</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                <p style="color: #666; margin: 0;">&copy; 2024 Prestige Group. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    
+    <script>
+        // Gallery functionality
+        function changeMainImage(src) {
+            const mainImage = document.getElementById('mainImage');
+            if (mainImage) {
+                mainImage.src = src;
+            }
+            
+            // Update active thumbnail
+            document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Header scroll behavior
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.prestige-header-new');
+            const topBar = document.querySelector('.prestige-top-bar');
+            const logoBridge = document.querySelector('.prestige-logo-bridge');
+            const transparentBar = document.querySelector('.prestige-transparent-bar');
+            
+            if (window.scrollY > 50) {
+                topBar.style.background = 'rgba(0,0,0,0.95)';
+                topBar.style.backdropFilter = 'blur(15px)';
+                logoBridge.style.background = 'rgba(0,0,0,0.9)';
+                transparentBar.style.background = 'rgba(0,0,0,0.1)';
+            } else {
+                topBar.style.background = '#000';
+                topBar.style.backdropFilter = 'blur(10px)';
+                logoBridge.style.background = 'rgba(0,0,0,0.8)';
+                transparentBar.style.background = 'rgba(255,255,255,0.1)';
+            }
+        });
+        
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            const name = document.getElementById('name').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            
+            if (!name || !mobile) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+        });
+    </script>
 </body>
 </html>

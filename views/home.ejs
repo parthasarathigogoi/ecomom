@@ -14,7 +14,7 @@
             padding: 0 20px;
         }
         
-        /* Hero Animations */
+        /* Advanced Hero Animations */
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -57,6 +57,156 @@
             }
         }
         
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px) rotate(180deg);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) rotate(270deg);
+                opacity: 0.9;
+            }
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212,175,55,0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3);
+            }
+        }
+        
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 30px rgba(212,175,55,0.3);
+            }
+            50% {
+                text-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 50px rgba(212,175,55,0.6);
+            }
+        }
+        
+        @keyframes morphBackground {
+            0%, 100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+        }
+        
+        /* Parallax Container */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        /* Floating Particles */
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(212,175,55,0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+        
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; animation-duration: 6s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; animation-duration: 8s; }
+        .particle:nth-child(3) { top: 40%; left: 70%; animation-delay: 2s; animation-duration: 7s; }
+        .particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 3s; animation-duration: 9s; }
+        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 4s; animation-duration: 6s; }
+        .particle:nth-child(6) { top: 70%; left: 30%; animation-delay: 5s; animation-duration: 8s; }
+        .particle:nth-child(7) { top: 15%; left: 85%; animation-delay: 6s; animation-duration: 7s; }
+        .particle:nth-child(8) { top: 90%; left: 15%; animation-delay: 7s; animation-duration: 9s; }
+        
+        /* Hero Content Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-main-content {
+                padding: 0 15px !important;
+            }
+            
+            .hero-badge {
+                font-size: 0.75rem !important;
+                padding: 6px 18px !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .hero-main-title {
+                margin-bottom: 20px !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .hero-actions {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 15px !important;
+            }
+            
+            .hero-btn-primary, .hero-btn-secondary {
+                width: 100% !important;
+                max-width: 280px !important;
+                justify-content: center !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.7rem !important;
+                letter-spacing: 1px !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.95rem !important;
+            }
+            
+            .hero-gap-section {
+                height: clamp(40px, 6vw, 80px) !important;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         @keyframes pulse {
             0%, 100% {
                 opacity: 0.8;
@@ -66,6 +216,120 @@
                 opacity: 1;
                 transform: scale(1.05);
             }
+        }
+        
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+        
+        /* Enhanced Button Animations */
+        .enhanced-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .enhanced-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .enhanced-btn:hover::before {
+            left: 100%;
+        }
+        
+        .enhanced-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        /* Scroll Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-slide-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-slide-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-scale.animated {
+            opacity: 1;
+            transform: scale(1);
         }
         
         /* Responsive adjustments */
@@ -89,12 +353,9 @@
         <!-- Black Top Bar -->
         <div class="prestige-top-bar" style="background: #000; padding: 15px 0; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: 70px; display: flex; align-items: center;">
             <div class="prestige-container" style="width: 100%;">
-                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                    <div class="prestige-logo">
-                        <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.8rem; line-height: 1;">PRESTIGE</h2>
-                    </div>
+                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: center; width: 100%;">
                     <nav class="prestige-nav">
-                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; gap: 40px; margin: 0; padding: 0; align-items: center;">
+                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; justify-content: space-between; width: 100%; max-width: 800px; margin: 0; padding: 0 40px; align-items: center;">
                             <li><a href="/" class="prestige-nav-link active-nav" style="color: #d4af37; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;">Home</a></li>
                             <li><a href="/all-projects" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">All Projects</a></li>
                             <li><a href="/about-us" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">About Us</a></li>
@@ -106,12 +367,11 @@
             </div>
         </div>
         
-        <!-- Enhanced Floating Enquiry Button -->
-        <div class="prestige-enquire-floating" style="position: fixed; top: 50%; right: 20px; transform: translateY(-50%); z-index: 1002;">
-            <button class="prestige-enquire-btn" style="background: linear-gradient(135deg, #d4af37, #b8941f); color: white; border: none; padding: 15px 25px; font-weight: 600; cursor: pointer; border-radius: 50px; box-shadow: 0 8px 25px rgba(212,175,55,0.4); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; display: flex; align-items: center; gap: 8px; writing-mode: horizontal-tb; animation: float 3s ease-in-out infinite;" onmouseover="this.style.transform='translateY(-50%) scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(212,175,55,0.5)'" onmouseout="this.style.transform='translateY(-50%) scale(1)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.4)'">
-                <i class="fas fa-phone" style="font-size: 16px;"></i>
-                <span>Enquire Now</span>
-            </button>
+        <!-- Logo positioned between black and transparent sections -->
+        <div class="prestige-logo-bridge" style="position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1002; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 25px; border: 2px solid rgba(212,175,55,0.3);">
+            <div class="prestige-logo">
+                <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">PRESTIGE</h2>
+            </div>
         </div>
         
         <!-- Transparent Decorative Bar -->
@@ -124,336 +384,980 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-main">
-        <div class="hero-background" style="background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; min-height: 100vh; display: flex; align-items: center; padding-top: 140px; position: relative; overflow: hidden;">
-            <!-- Subtle Background Animation -->
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(212,175,55,0.08) 0%, transparent 60%); animation: pulse 8s ease-in-out infinite;"></div>
-            
-            <div class="prestige-container" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 2;">
-                <div class="hero-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div class="hero-badge" style="display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); padding: 10px 24px; border-radius: 30px; margin-bottom: 40px; animation: fadeInUp 0.8s ease-out; backdrop-filter: blur(10px);">
-                        <span style="color: #d4af37; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Est. 1986 • Premium Developer</span>
-                    </div>
-                    
-                    <h1 class="hero-title" style="font-size: 3.8rem; font-weight: 400; color: white; line-height: 1.2; margin-bottom: 25px; font-family: 'Playfair Display', serif; letter-spacing: -0.01em; animation: fadeInUp 0.8s ease-out 0.2s both;">
-                        Luxury Real Estate<br>
-                        <span style="font-weight: 700; color: #d4af37;">Redefined</span>
-                    </h1>
-                    
-                    <p class="hero-subtitle" style="font-size: 1.15rem; color: rgba(255,255,255,0.9); margin-bottom: 45px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 400; animation: fadeInUp 0.8s ease-out 0.4s both;">
-                        Premium residential and commercial developments across India's major cities. <strong style="color: #d4af37;">300+ projects delivered</strong> with unmatched quality and innovation.
-                    </p>
-                    
-                    <div class="hero-actions" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both;">
-                        <a href="/all-projects" class="prestige-btn-primary" style="background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(212,175,55,0.3); transform: translateY(0); border: none; display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 30px rgba(212,175,55,0.4)'; this.style.background='linear-gradient(135deg, #e6c547, #c9a520)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(212,175,55,0.3)'; this.style.background='linear-gradient(135deg, #d4af37, #b8941f)'">
-                            <span>View Projects</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                        
-                        <a href="/contact" class="prestige-btn-secondary" style="border: 2px solid rgba(255,255,255,0.4); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; backdrop-filter: blur(15px); background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(255,255,255,0.18)'; this.style.borderColor='rgba(212,175,55,0.7)'; this.style.color='#d4af37'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.4)'; this.style.color='white'; this.style.transform='translateY(0)'">
-                            <span>Contact Us</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    
-                    <!-- Trust Indicators -->
-                    <div class="hero-trust" style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15); animation: fadeInUp 0.8s ease-out 0.8s both;">
-                        <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">300+</div>
-                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Projects</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">37+</div>
-                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Years</div>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 2.2rem; font-weight: 700; color: #d4af37; margin-bottom: 5px; font-family: 'Inter', sans-serif;">15+</div>
-                                <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;">Cities</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats Section -->
-    <section class="quick-stats" style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 80px 0; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(212,175,55,0.05) 0%, transparent 50%); pointer-events: none;"></div>
-        
-        <div class="prestige-container" style="position: relative; z-index: 2;">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2 style="font-size: 2.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">🏆 Our Achievements</h2>
-                <p style="font-size: 1.2rem; color: #6c757d; max-width: 600px; margin: 0 auto; line-height: 1.6;">Trusted by thousands of families across India for over three decades</p>
+    <section class="hero-main parallax-container">
+        <div class="hero-carousel" style="position: relative; min-height: 100vh; overflow: hidden;">
+            <!-- Floating Particles -->
+            <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 50px;">
-                <!-- Stat 1 -->
-                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🏗️</div>
-                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">300+</h3>
-                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Completed Projects</p>
-                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Residential & Commercial developments across India</p>
-                </div>
-                
-                <!-- Stat 2 -->
-                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🥇</div>
-                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">#1</h3>
-                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Top Developer</p>
-                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Most trusted real estate brand in India</p>
-                </div>
-                
-                <!-- Stat 3 -->
-                <div style="text-align: center; padding: 40px 30px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.1);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🌍</div>
-                    <h3 style="font-size: 3rem; font-weight: 800; color: #d4af37; margin-bottom: 10px; font-family: 'Inter', sans-serif;">15+</h3>
-                    <p style="font-size: 1.1rem; color: #2c3e50; font-weight: 600; margin-bottom: 8px;">Major Cities</p>
-                    <p style="font-size: 0.95rem; color: #6c757d; line-height: 1.5;">Pan-India presence with premium developments</p>
-                </div>
+            <!-- Background Images with Parallax -->
+            <div class="hero-slide active parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 1; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            <div class="hero-slide parallax-layer" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover; opacity: 0; transition: opacity 1s ease-in-out; transform: translateZ(0);"></div>
+            
+            <!-- Left Arrow -->
+            <button class="hero-arrow hero-arrow-left" onclick="previousHeroSlide()" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.9); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 15; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3);" onmouseover="this.style.background='rgba(0,0,0,0.8)'; this.style.borderColor='#ffffff'; this.style.transform='translateY(-50%) scale(1.1)'; this.style.boxShadow='0 6px 25px rgba(0,0,0,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255,255,255,0.9)'; this.style.transform='translateY(-50%) scale(1)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <!-- Right Arrow -->
+            <button class="hero-arrow hero-arrow-right" onclick="nextHeroSlide()" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.9); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 15; transition: all 0.3s ease; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3);" onmouseover="this.style.background='rgba(0,0,0,0.8)'; this.style.borderColor='#ffffff'; this.style.transform='translateY(-50%) scale(1.1)'; this.style.boxShadow='0 6px 25px rgba(0,0,0,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255,255,255,0.9)'; this.style.transform='translateY(-50%) scale(1)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <!-- Vertical Enquiry Button -->
+            <div class="enquiry-button-vertical" style="position: fixed; top: 75%; right: 0; transform: translateY(-50%); z-index: 1000;">
+                <a href="/contact" style="background: linear-gradient(135deg, #d4af37, #f4d03f); color: white; padding: 16px 8px; text-decoration: none; font-size: 12px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 6px; writing-mode: vertical-rl; text-orientation: mixed; height: 100px; width: 50px; justify-content: center; box-shadow: -3px 0 15px rgba(0,0,0,0.2); transition: all 0.3s ease; border-radius: 0;" onmouseover="this.style.background='linear-gradient(135deg, #f4d03f, #d4af37)'; this.style.transform='translateX(-5px)'; this.style.boxShadow='-5px 0 20px rgba(0,0,0,0.3)'" onmouseout="this.style.background='linear-gradient(135deg, #d4af37, #f4d03f)'; this.style.transform='translateX(0)'; this.style.boxShadow='-3px 0 15px rgba(0,0,0,0.2)'" onclick="window.location.href='/contact'">
+                    <i class="fas fa-phone" style="font-size: 16px; margin-bottom: 6px;"></i>
+                    <span style="font-size: 11px; letter-spacing: 0.5px;">ENQUIRE</span>
+                    <span style="font-size: 11px; letter-spacing: 0.5px;">NOW</span>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Professional CTA Section -->
-    <section style="background: #f8f9fa; padding: 60px 0;">
-        <div class="prestige-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; font-weight: 600; color: #333; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Discover Your Dream Home</h2>
-                <p style="font-size: 1.1rem; color: #666; margin-bottom: 40px; line-height: 1.6;">From luxury apartments to premium villas, explore our diverse portfolio of residential and commercial projects across India's major cities.</p>
-                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                    <a href="/all-projects" style="background: #d4af37; color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(212,175,55,0.3); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.4)'; this.style.background='#b8941f'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.3)'; this.style.background='#d4af37'">
+            
+            <!-- Hero Content Overlay -->
+            <div class="hero-content-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.3) 100%); z-index: 5;"></div>
+            
+            <!-- Hero Main Content -->
+            <div class="hero-main-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; max-width: 1000px; width: 90%; padding: 0 20px;">
+                <!-- Elegant Badge -->
+                <div class="hero-badge" style="display: inline-block; background: rgba(212,175,55,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.3); color: #d4af37; padding: 8px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 30px; text-transform: uppercase; animation: fadeInUp 1s ease-out 0.2s both;">
+                    Premium Real Estate Excellence
+                </div>
+                
+                <!-- Main Headline with Hierarchical Typography -->
+                <h1 class="hero-main-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 30px rgba(212,175,55,0.3); animation: slideInLeft 1s ease-out 0.4s both, textGlow 3s ease-in-out infinite;">
+                    Discover Your <span style="color: #d4af37; position: relative; animation: glowPulse 2s ease-in-out infinite;">Dream Home</span>
+                </h1>
+                
+                <!-- Sophisticated Subtitle -->
+                <p class="hero-subtitle" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 400; color: rgba(255,255,255,0.9); line-height: 1.6; max-width: 700px; margin: 0 auto 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); animation: slideInUp 1s ease-out 0.6s both;">
+                    From luxury apartments to premium villas, explore our diverse portfolio of residential and commercial projects across India's major cities
+                </p>
+                
+                <!-- Premium Action Buttons -->
+                <div class="hero-actions" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; animation: fadeInUp 1s ease-out 0.8s both;">
+                    <a href="/all-projects" class="hero-btn-primary" style="background: linear-gradient(135deg, #d4af37, #f4d03f); color: white; padding: 16px 32px; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 8px 30px rgba(212,175,55,0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px rgba(212,175,55,0.4)'; this.style.background='linear-gradient(135deg, #f4d03f, #d4af37)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 30px rgba(212,175,55,0.3)'; this.style.background='linear-gradient(135deg, #d4af37, #f4d03f)'">
                         <i class="fas fa-building" style="font-size: 16px;"></i>
                         View All Projects
                     </a>
-                    <a href="/contact" style="border: 2px solid #d4af37; color: #d4af37; padding: 13px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; background: transparent; position: relative; overflow: hidden;" onmouseover="this.style.background='#d4af37'; this.style.color='white'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.3)'" onmouseout="this.style.background='transparent'; this.style.color='#d4af37'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <a href="/contact" class="hero-btn-secondary" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 14px 32px; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 12px; position: relative; overflow: hidden;" onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.borderColor='rgba(255,255,255,0.5)'; this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='rgba(255,255,255,0.3)'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='none'">
                         <i class="fas fa-calendar-alt" style="font-size: 16px;"></i>
-                        Schedule Site Visit
+                        Schedule Visit
                     </a>
+                </div>
+            </div>
+            
+            <!-- Navigation Dots -->
+            <div class="hero-navigation" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10;">
+                <button class="nav-dot active" onclick="changeSlide(0)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: #ffffff; cursor: pointer; transition: all 0.3s ease; transform: scale(1.2); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(1)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(2)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(3)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(4)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(5)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(6)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+                <button class="nav-dot" onclick="changeSlide(7)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor: pointer; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 2px 8px rgba(0,0,0,0.3);" onmouseover="this.style.transform='scale(1.4)'; this.style.borderColor='#ffffff'" onmouseout="this.style.transform=this.classList.contains('active') ? 'scale(1.2)' : 'scale(1)'; this.style.borderColor=this.classList.contains('active') ? '#ffffff' : 'rgba(255,255,255,0.8)'"></button>
+            </div>
+            
+
+        </div>
+    </section>
+    
+    <!-- Hero Section Responsive Gap -->
+    <div class="hero-gap-section" style="height: clamp(60px, 8vw, 120px); background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, transparent 100%); position: relative; overflow: hidden;">
+        <!-- Decorative Elements -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 50%, transparent 100%);"></div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.2) 50%, transparent 100%);"></div>
+    </div>
+    
+    <!-- Hero Carousel JavaScript -->
+     <script>
+         let heroCurrentSlide = 0;
+         const heroTotalSlides = 8;
+         let heroAutoSlideInterval;
+         
+         function changeSlide(slideIndex) {
+             const slides = document.querySelectorAll('.hero-slide');
+             const dots = document.querySelectorAll('.nav-dot');
+             
+             // Safety check
+             if (!slides.length || !dots.length || slideIndex >= slides.length) return;
+             
+             // Remove active class from current slide and dot
+             if (slides[heroCurrentSlide]) slides[heroCurrentSlide].style.opacity = '0';
+             if (dots[heroCurrentSlide]) {
+                 dots[heroCurrentSlide].classList.remove('active');
+                 dots[heroCurrentSlide].style.background = 'transparent';
+                 dots[heroCurrentSlide].style.transform = 'scale(1)';
+                 dots[heroCurrentSlide].style.borderColor = 'rgba(255,255,255,0.8)';
+             }
+             
+             // Update current slide
+             heroCurrentSlide = slideIndex;
+             
+             // Add active class to new slide and dot
+             if (slides[heroCurrentSlide]) slides[heroCurrentSlide].style.opacity = '1';
+             if (dots[heroCurrentSlide]) {
+                 dots[heroCurrentSlide].classList.add('active');
+                 dots[heroCurrentSlide].style.background = '#ffffff';
+                 dots[heroCurrentSlide].style.transform = 'scale(1.2)';
+                 dots[heroCurrentSlide].style.borderColor = '#ffffff';
+             }
+             
+             // Update arrow states
+             updateArrowStates();
+             
+             // Reset auto-slide timer
+             clearInterval(heroAutoSlideInterval);
+             startHeroAutoSlide();
+         }
+         
+         function nextHeroSlide() {
+             const next = (heroCurrentSlide + 1) % heroTotalSlides;
+             changeSlide(next);
+         }
+         
+         function previousHeroSlide() {
+             const prev = (heroCurrentSlide - 1 + heroTotalSlides) % heroTotalSlides;
+             changeSlide(prev);
+         }
+         
+         function updateArrowStates() {
+             const leftArrow = document.querySelector('.hero-arrow-left');
+             const rightArrow = document.querySelector('.hero-arrow-right');
+             
+             if (leftArrow && rightArrow) {
+                 // Reset styles
+                 leftArrow.style.opacity = '1';
+                 leftArrow.style.cursor = 'pointer';
+                 leftArrow.style.pointerEvents = 'auto';
+                 rightArrow.style.opacity = '1';
+                 rightArrow.style.cursor = 'pointer';
+                 rightArrow.style.pointerEvents = 'auto';
+                 
+                 // Disable left arrow on first slide
+                 if (heroCurrentSlide === 0) {
+                     leftArrow.style.opacity = '0.4';
+                     leftArrow.style.cursor = 'not-allowed';
+                     leftArrow.style.pointerEvents = 'none';
+                 }
+                 
+                 // Disable right arrow on last slide
+                 if (heroCurrentSlide === heroTotalSlides - 1) {
+                     rightArrow.style.opacity = '0.4';
+                     rightArrow.style.cursor = 'not-allowed';
+                     rightArrow.style.pointerEvents = 'none';
+                 }
+             }
+         }
+         
+         function startHeroAutoSlide() {
+             heroAutoSlideInterval = setInterval(nextHeroSlide, 5000); // Change slide every 5 seconds
+         }
+         
+         // Initialize carousel
+         document.addEventListener('DOMContentLoaded', function() {
+             // Add a small delay to ensure all elements are rendered
+             setTimeout(() => {
+                 const slides = document.querySelectorAll('.hero-slide');
+                 const dots = document.querySelectorAll('.nav-dot');
+                 
+                 if (slides.length && dots.length) {
+                     updateArrowStates(); // Set initial arrow states
+                     startHeroAutoSlide();
+                 }
+             }, 100);
+             
+             // Pause auto-slide on hover
+             const heroCarousel = document.querySelector('.hero-carousel');
+             if (heroCarousel) {
+                 heroCarousel.addEventListener('mouseenter', () => {
+                     clearInterval(heroAutoSlideInterval);
+                 });
+                 
+                 heroCarousel.addEventListener('mouseleave', () => {
+                     startHeroAutoSlide();
+                 });
+                 
+                 // Add touch/swipe support
+                 let touchStartX = 0;
+                 let touchEndX = 0;
+                 
+                 heroCarousel.addEventListener('touchstart', (e) => {
+                     touchStartX = e.changedTouches[0].screenX;
+                 });
+                 
+                 heroCarousel.addEventListener('touchend', (e) => {
+                     touchEndX = e.changedTouches[0].screenX;
+                     handleSwipe();
+                 });
+                 
+                 function handleSwipe() {
+                     const swipeThreshold = 50;
+                     const diff = touchStartX - touchEndX;
+                     
+                     if (Math.abs(diff) > swipeThreshold) {
+                         if (diff > 0) {
+                             // Swipe left - next slide
+                             if (heroCurrentSlide < heroTotalSlides - 1) {
+                                 nextHeroSlide();
+                             }
+                         } else {
+                             // Swipe right - previous slide
+                             if (heroCurrentSlide > 0) {
+                                 previousHeroSlide();
+                             }
+                         }
+                     }
+                 }
+                 
+                 // Add keyboard navigation
+                 document.addEventListener('keydown', (e) => {
+                     if (e.key === 'ArrowLeft' && heroCurrentSlide > 0) {
+                         previousHeroSlide();
+                     } else if (e.key === 'ArrowRight' && heroCurrentSlide < heroTotalSlides - 1) {
+                         nextHeroSlide();
+                     }
+                 });
+             }
+         });
+         
+         // Parallax Scrolling Effect
+         function initParallaxScrolling() {
+             const parallaxElements = document.querySelectorAll('.parallax-layer');
+             const particles = document.querySelectorAll('.particle');
+             
+             window.addEventListener('scroll', () => {
+                 const scrolled = window.pageYOffset;
+                 const rate = scrolled * -0.5;
+                 
+                 // Apply parallax to background layers
+                 parallaxElements.forEach((element, index) => {
+                     const speed = 0.3 + (index * 0.1);
+                     element.style.transform = `translateZ(0) translateY(${scrolled * speed}px)`;
+                 });
+                 
+                 // Animate particles based on scroll
+                 particles.forEach((particle, index) => {
+                     const speed = 0.2 + (index * 0.05);
+                     particle.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                 });
+             });
+         }
+         
+         // Intersection Observer for Scroll Animations
+         function initScrollAnimations() {
+             const observerOptions = {
+                 threshold: 0.1,
+                 rootMargin: '0px 0px -50px 0px'
+             };
+             
+             const observer = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         entry.target.classList.add('animated');
+                     }
+                 });
+             }, observerOptions);
+             
+             // Observe elements with animation classes
+             document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale').forEach(el => {
+                 observer.observe(el);
+             });
+         }
+         
+         // Enhanced Button Interactions
+         function initEnhancedButtons() {
+             const buttons = document.querySelectorAll('.hero-btn-primary, .hero-btn-secondary');
+             
+             buttons.forEach(button => {
+                 button.addEventListener('mouseenter', function() {
+                     this.style.transform = 'translateY(-3px) scale(1.02)';
+                     this.style.boxShadow = '0 15px 35px rgba(0,0,0,0.2)';
+                 });
+                 
+                 button.addEventListener('mouseleave', function() {
+                     this.style.transform = 'translateY(0) scale(1)';
+                     this.style.boxShadow = this.classList.contains('hero-btn-primary') ? 
+                         '0 8px 30px rgba(212,175,55,0.3)' : 'none';
+                 });
+                 
+                 button.addEventListener('click', function(e) {
+                     // Create ripple effect
+                     const ripple = document.createElement('span');
+                     const rect = this.getBoundingClientRect();
+                     const size = Math.max(rect.width, rect.height);
+                     const x = e.clientX - rect.left - size / 2;
+                     const y = e.clientY - rect.top - size / 2;
+                     
+                     ripple.style.cssText = `
+                         position: absolute;
+                         width: ${size}px;
+                         height: ${size}px;
+                         left: ${x}px;
+                         top: ${y}px;
+                         background: rgba(255,255,255,0.3);
+                         border-radius: 50%;
+                         transform: scale(0);
+                         animation: ripple 0.6s linear;
+                         pointer-events: none;
+                     `;
+                     
+                     this.appendChild(ripple);
+                     
+                     setTimeout(() => {
+                         ripple.remove();
+                     }, 600);
+                 });
+             });
+         }
+         
+         // Animated Counter Function
+          function animateCounters() {
+              const counters = document.querySelectorAll('.counter');
+              
+              counters.forEach(counter => {
+                  const target = parseInt(counter.getAttribute('data-target'));
+                  const increment = target / 100;
+                  let current = 0;
+                  
+                  const updateCounter = () => {
+                      if (current < target) {
+                          current += increment;
+                          if (current > target) current = target;
+                          
+                          // Format number with commas for large numbers
+                          const displayValue = Math.floor(current);
+                          if (displayValue >= 1000) {
+                              counter.textContent = displayValue.toLocaleString();
+                          } else {
+                              counter.textContent = displayValue;
+                          }
+                          
+                          requestAnimationFrame(updateCounter);
+                      }
+                  };
+                  
+                  updateCounter();
+              });
+          }
+          
+          // Enhanced Property Cards
+          function enhancePropertyCards() {
+              const propertyCards = document.querySelectorAll('.prestige-card');
+              
+              propertyCards.forEach(card => {
+                  // Add 3D transform container
+                  card.style.transformStyle = 'preserve-3d';
+                  card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                  
+                  card.addEventListener('mouseenter', function() {
+                      this.style.transform = 'translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02)';
+                      this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2), 0 0 0 1px rgba(212,175,55,0.1)';
+                      
+                      // Add glow effect to image
+                      const image = this.querySelector('.prestige-card-image');
+                      if (image) {
+                          image.style.filter = 'brightness(1.1) contrast(1.1)';
+                      }
+                  });
+                  
+                  card.addEventListener('mouseleave', function() {
+                      this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+                      this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
+                      
+                      const image = this.querySelector('.prestige-card-image');
+                      if (image) {
+                          image.style.filter = 'brightness(1) contrast(1)';
+                      }
+                  });
+                  
+                  // Add tilt effect based on mouse position
+                  card.addEventListener('mousemove', function(e) {
+                      const rect = this.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const y = e.clientY - rect.top;
+                      const centerX = rect.width / 2;
+                      const centerY = rect.height / 2;
+                      const rotateX = (y - centerY) / 10;
+                      const rotateY = (centerX - x) / 10;
+                      
+                      this.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                  });
+              });
+          }
+          
+          // Enhanced Scroll Animations with Counter Trigger
+          function initEnhancedScrollAnimations() {
+              const observerOptions = {
+                  threshold: 0.3,
+                  rootMargin: '0px 0px -50px 0px'
+              };
+              
+              const observer = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                      if (entry.isIntersecting) {
+                          entry.target.classList.add('animated');
+                          
+                          // Trigger counter animation for stats section
+                          if (entry.target.classList.contains('stat-card')) {
+                              const counter = entry.target.querySelector('.counter');
+                              if (counter && !counter.classList.contains('counted')) {
+                                  counter.classList.add('counted');
+                                  animateCounters();
+                              }
+                          }
+                      }
+                  });
+              }, observerOptions);
+              
+              // Observe elements with animation classes
+              document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale, .stat-card').forEach(el => {
+                  observer.observe(el);
+              });
+          }
+          
+          // Initialize all enhancements
+          document.addEventListener('DOMContentLoaded', function() {
+              setTimeout(() => {
+                  initParallaxScrolling();
+                  initEnhancedScrollAnimations();
+                  initEnhancedButtons();
+                  enhancePropertyCards();
+              }, 100);
+          });
+     </script>
+     
+     <!-- Enhanced Styles -->
+     <style>
+         /* Ripple Animation */
+         @keyframes ripple {
+             to {
+                 transform: scale(4);
+                 opacity: 0;
+             }
+         }
+         
+         /* Enhanced Button Styles */
+         .hero-btn-primary, .hero-btn-secondary {
+             position: relative;
+             overflow: hidden;
+             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+         }
+     </style>
+     
+     <!-- Responsive Arrow Styles -->
+     <style>
+         @media (max-width: 768px) {
+             .hero-arrow {
+                 width: 40px !important;
+                 height: 40px !important;
+             }
+             
+             .hero-arrow-left {
+                 left: 15px !important;
+             }
+             
+             .hero-arrow-right {
+                 right: 15px !important;
+             }
+             
+             .prestige-logo-bridge {
+                 top: 45px !important;
+                 padding: 8px 20px !important;
+             }
+             
+             .prestige-logo-bridge h2 {
+                 font-size: 1.4rem !important;
+             }
+             
+             .prestige-nav-menu {
+                 max-width: 600px !important;
+                 padding: 0 20px !important;
+             }
+             
+             .hero-arrow svg {
+                 width: 18px !important;
+                 height: 18px !important;
+             }
+             
+             .enquiry-button-vertical {
+                 right: 0 !important;
+             }
+             
+             .enquiry-button-vertical a {
+                 width: 42px !important;
+                 height: 85px !important;
+                 padding: 12px 6px !important;
+             }
+             
+             .enquiry-button-vertical i {
+                 font-size: 13px !important;
+             }
+             
+             .enquiry-button-vertical span {
+                 font-size: 9px !important;
+             }
+         }
+         
+         @media (max-width: 480px) {
+             .hero-arrow {
+                 width: 35px !important;
+                 height: 35px !important;
+             }
+             
+             .hero-arrow-left {
+                 left: 10px !important;
+             }
+             
+             .hero-arrow-right {
+                 right: 10px !important;
+             }
+             
+             .prestige-logo-bridge {
+                 top: 42px !important;
+                 padding: 6px 15px !important;
+             }
+             
+             .prestige-logo-bridge h2 {
+                 font-size: 1.2rem !important;
+             }
+             
+             .prestige-nav-menu {
+                 max-width: 100% !important;
+                 padding: 0 10px !important;
+             }
+             
+             .hero-arrow svg {
+                 width: 16px !important;
+                 height: 16px !important;
+             }
+             
+             .enquiry-button-vertical {
+                 right: 0 !important;
+             }
+             
+             .enquiry-button-vertical a {
+                 width: 38px !important;
+                 height: 75px !important;
+                 padding: 10px 5px !important;
+             }
+             
+             .enquiry-button-vertical i {
+                 font-size: 12px !important;
+             }
+             
+             .enquiry-button-vertical span {
+                 font-size: 8px !important;
+             }
+         }
+         
+         /* Focus styles for accessibility */
+         .hero-arrow:focus {
+             outline: 3px solid rgba(255, 255, 255, 0.8);
+             outline-offset: 2px;
+         }
+         
+         /* Active state for better touch feedback */
+         .hero-arrow:active {
+             transform: translateY(-50%) scale(0.95) !important;
+         }
+     </style>
+
+
+    </section>
+
+
+
+
+    
+    <!-- Luxury Projects Carousel -->
+                
+                <!-- Enhanced Interactive Map Section -->
+                <div class="woody-section prestige-woody-pad" style="margin: 60px 0; border-radius: 20px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22grid%22%20width%3D%2210%22%20height%3D%2210%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M%2010%200%20L%200%200%200%2010%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%220.1%22%3E%3C/path%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22url(%23grid)%22%3E%3C/rect%3E%3C/svg%3E'); opacity: 0.3;"></div>
+                    
+                    <div class="prestige-container" style="position: relative; z-index: 2;">
+                        <div style="text-align: center; margin-bottom: 50px;">
+                            <h2 style="font-size: 3rem; font-weight: 700; color: white; margin-bottom: 15px; font-family: 'Playfair Display', serif;">Our Pan-India Presence</h2>
+                            <p style="font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; line-height: 1.6;">Discover premium developments across India's most vibrant cities</p>
+                            <div style="width: 80px; height: 3px; background: #d4af37; margin: 25px auto; border-radius: 2px;"></div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+                            <!-- Interactive Map -->
+                            <div style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15552.0!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBangalore%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1635789012345!5m2!1sen!2sus&zoom=5&center=20.5937,78.9629" 
+                                    width="100%" 
+                                    height="450" 
+                                    style="border:0; filter: grayscale(20%) contrast(1.1);" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                                
+                                <!-- Floating City Stats -->
+                                <div style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 20px; border-radius: 12px; color: white;">
+                                    <h4 style="color: #d4af37; margin: 0 0 10px 0; font-size: 1.1rem;">Total Projects</h4>
+                                    <p style="font-size: 2rem; font-weight: 700; margin: 0; color: white;">45+</p>
+                                    <p style="font-size: 0.9rem; margin: 5px 0 0 0; opacity: 0.8;">Across 6 Cities</p>
+                                </div>
+                            </div>
+                            
+                            <!-- City Statistics -->
+                            <div>
+                                <div style="display: grid; gap: 20px;">
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='translateX(10px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(0)'">
+                                        <div style="display: flex; align-items: center; gap: 20px;">
+                                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">19</div>
+                                            <div>
+                                                <h4 style="color: white; margin: 0 0 5px 0; font-size: 1.3rem;">Bangalore</h4>
+                                                <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem;">Premium residential & commercial projects</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='translateX(10px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(0)'">
+                                        <div style="display: flex; align-items: center; gap: 20px;">
+                                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">9</div>
+                                            <div>
+                                                <h4 style="color: white; margin: 0 0 5px 0; font-size: 1.3rem;">Hyderabad</h4>
+                                                <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem;">Luxury apartments & gated communities</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='translateX(10px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateX(0)'">
+                                        <div style="display: flex; align-items: center; gap: 20px;">
+                                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">8</div>
+                                            <div>
+                                                <h4 style="color: white; margin: 0 0 5px 0; font-size: 1.3rem;">Mumbai</h4>
+                                                <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem;">High-rise towers & commercial spaces</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 30px; text-align: center;">
+                                    <a href="/all-projects" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(212,175,55,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 35px rgba(212,175,55,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.3)'">
+                                        <span>Explore All Locations</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-header">
-                <span class="about-label">ABOUT PRESTIGE GROUP</span>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-left">
-                    <div class="crisil-logo">
-                        <div style="background: #d4af37; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 600; font-size: 1.2rem;">CRISIL</div>
-                        <span class="crisil-text">An S&P Global Company</span>
-                    </div>
-                    
-                    <h2 class="about-title">Only CRISIL DA1+ rated<br>Real Estate Developer in India</h2>
-                    
-                    <p class="about-description">
-                        One of India's most trusted and respected names in Real Estate - The Prestige Group is synonymous with innovation and luxurious living. Since 1986, Prestige has helped build the face of Modern Urban India in its glorious globalized avatar by consistently introducing and creating state-of-the-art transformative real estate concepts, technologies and innovations.
-                    </p>
-                    
-                    <a href="/about-us" class="see-details-btn">SEE DETAILS →</a>
-                </div>
-                
-                <div class="about-right">
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">38+</div>
-                            <div class="stat-label">Years of Excellence</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">300+</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">180+</div>
-                            <div class="stat-label">Mn. Sq. Ft. Delivered</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">170+</div>
-                            <div class="stat-label">Mn. Sq. Ft. Underway</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Luxury Projects Carousel -->
-    <section class="luxury-projects" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 100px 0; position: relative; overflow: hidden;">
-        <!-- Elegant Background Elements -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 30%, rgba(212,175,55,0.03) 0%, transparent 50%), radial-gradient(circle at 30% 80%, rgba(212,175,55,0.02) 0%, transparent 50%); pointer-events: none;"></div>
+    <!-- Featured Project Showcase -->
+    <section style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); padding: 100px 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; left: -10%; width: 120%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 70%); pointer-events: none;"></div>
         
         <div class="prestige-container" style="position: relative; z-index: 2;">
-            <!-- Luxury Header with Negative Space -->
-            <div style="text-align: center; margin-bottom: 80px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <span style="display: inline-block; background: rgba(212,175,55,0.1); color: #d4af37; padding: 8px 24px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase;">Premium Portfolio</span>
-                <h2 style="font-size: 3.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 25px; font-family: 'Playfair Display', serif; line-height: 1.2;">Exquisite Living Experiences</h2>
-                <p style="font-size: 1.2rem; color: #6c757d; line-height: 1.7; max-width: 600px; margin: 0 auto;">Discover our meticulously crafted developments across residential, commercial, hospitality, and retail segments</p>
+            <div style="text-align: center; margin-bottom: 80px;">
+                <div style="display: inline-block; background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 8px 25px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 1px;">FEATURED PROJECT</div>
+                <% if (featuredProject) { %>
+                    <h2 style="font-size: 3.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 20px; font-family: 'Playfair Display', serif; line-height: 1.2;"><%= featuredProject.title %></h2>
+                    <p style="font-size: 1.3rem; color: #6c757d; max-width: 700px; margin: 0 auto; line-height: 1.6;"><%= featuredProject.shortDescription %></p>
+                <% } else { %>
+                    <h2 style="font-size: 3.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 20px; font-family: 'Playfair Display', serif; line-height: 1.2;">No Featured Project</h2>
+                    <p style="font-size: 1.3rem; color: #6c757d; max-width: 700px; margin: 0 auto; line-height: 1.6;">Please add a featured project through the CMS</p>
+                <% } %>
             </div>
             
-            <!-- Interactive Segments Carousel -->
-            <div class="segments-carousel" style="margin-bottom: 80px;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
-                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
-                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
-                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">RESIDENTIAL</h3>
-                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Luxury apartments, villas & premium homes</p>
-                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
+            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; margin-bottom: 80px;">
+                <!-- Project Images Showcase -->
+                <div style="position: relative;">
+                    <% if (featuredProject) { %>
+                        <a href="/single-property/<%= featuredProject._id %>" style="text-decoration: none; color: inherit; display: block; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                    <% } %>
+                    <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+                        <% if (featuredProject && featuredProject.mainImage) { %>
+                            <div style="background: url('<%= featuredProject.mainImage %>') center/cover; height: 500px; position: relative;">
+                        <% } else { %>
+                            <div style="background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop') center/cover; height: 500px; position: relative;">
+                        <% } %>
+                            <div style="position: absolute; top: 30px; left: 30px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); color: white; padding: 15px 25px; border-radius: 50px; font-weight: 600;">
+                                <i class="fas fa-play" style="margin-right: 8px;"></i> Virtual Tour Available
+                            </div>
+                            <div style="position: absolute; bottom: 30px; right: 30px; background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 12px 20px; border-radius: 12px; font-weight: 600;">
+                                <% if (featuredProject && featuredProject.price) { %>
+                                    <%= featuredProject.price %>
+                                <% } else { %>
+                                    Starting ₹2.8 Cr
+                                <% } %>
+                            </div>
                         </div>
                     </div>
+                    <% if (featuredProject) { %>
+                        </a>
+                    <% } %>
                     
-                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
-                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
-                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">COMMERCIAL</h3>
-                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Office spaces, IT parks & business centers</p>
-                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
-                        </div>
+                    <!-- Floating Gallery Thumbnails -->
+                    <div style="position: absolute; bottom: -30px; left: 30px; display: flex; gap: 15px;">
+                        <% if (featuredProject && featuredProject.galleryImages && featuredProject.galleryImages.length > 0) { %>
+                            <% featuredProject.galleryImages.slice(0, 3).forEach((image, index) => { %>
+                                <div style="width: 80px; height: 80px; border-radius: 12px; background: url('<%= image %>') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <% }); %>
+                            <% if (featuredProject.galleryImages.length > 3) { %>
+                                <div style="width: 80px; height: 80px; border-radius: 12px; background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('<%= featuredProject.galleryImages[3] %>') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">+<%= featuredProject.galleryImages.length - 3 %></div>
+                            <% } %>
+                        <% } else { %>
+                            <div style="width: 80px; height: 80px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <div style="width: 80px; height: 80px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=200&h=200&fit=crop') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <div style="width: 80px; height: 80px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=200&h=200&fit=crop') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                            <div style="width: 80px; height: 80px; border-radius: 12px; background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop') center/cover; box-shadow: 0 8px 25px rgba(0,0,0,0.2); border: 3px solid white; cursor: pointer; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">+12</div>
+                        <% } %>
                     </div>
-                    
-                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
-                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
-                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">HOSPITALITY</h3>
-                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Premium hotels & resort developments</p>
-                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="luxury-segment" style="background: white; border-radius: 20px; padding: 50px 30px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.1); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-15px) scale(1.02)'; this.style.boxShadow='0 25px 60px rgba(0,0,0,0.15)'; this.querySelector('.segment-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)'; this.querySelector('.segment-overlay').style.opacity='0'">
-                        <div class="segment-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02)); opacity: 0; transition: opacity 0.4s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; border-radius: 20px; background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop') center/cover; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.1) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'"></div>
-                            <h3 style="font-size: 1.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">RETAIL</h3>
-                            <p style="color: #6c757d; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Shopping malls & retail complexes</p>
-                            <div style="width: 40px; height: 2px; background: #d4af37; margin: 0 auto;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Luxury Cities Carousel -->
-            <div class="luxury-cities" style="margin-top: 60px;">
-                <div style="text-align: center; margin-bottom: 60px;">
-                    <h3 style="font-size: 2.4rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">Pan-India Presence</h3>
-                    <p style="font-size: 1.1rem; color: #6c757d; max-width: 500px; margin: 0 auto; line-height: 1.6;">Discover premium developments across India's most vibrant cities</p>
                 </div>
                 
-                <!-- Interactive City Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
-                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
-                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Bangalore</h4>
-                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">19 Projects Available</p>
-                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
-                        </div>
-                    </div>
-                    
-                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
-                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Hyderabad</h4>
-                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">9 Projects Available</p>
-                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
-                        </div>
-                    </div>
-                    
-                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
-                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Mumbai</h4>
-                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">8 Projects Available</p>
-                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
-                        </div>
-                    </div>
-                    
-                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
-                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Cochin</h4>
-                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">6 Projects Available</p>
-                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
-                        </div>
-                    </div>
-                    
-                    <div class="luxury-city" style="background: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(212,175,55,0.08); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'; this.querySelector('.city-overlay').style.opacity='1'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)'; this.querySelector('.city-overlay').style.opacity='0'">
-                        <div class="city-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <div style="width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 12px; background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=200&h=200&fit=crop') center/cover; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; font-family: 'Inter', sans-serif;">Delhi NCR</h4>
-                            <p style="color: #d4af37; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">3 Projects Available</p>
-                            <a href="#" style="color: #6c757d; font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6c757d'">View All →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-                </div>
-                
-                <!-- Map Section -->
-                <div class="map-section">
-                    <div class="interactive-map">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15552.0!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBangalore%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1635789012345!5m2!1sen!2sus&zoom=5&center=20.5937,78.9629" 
-                            width="100%" 
-                            height="400" 
-                            style="border:0; border-radius: 8px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                <!-- Project Details -->
+                <div>
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); border: 1px solid rgba(212,175,55,0.1);">
+                        <% if (featuredProject) { %>
+                            <div style="margin-bottom: 30px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                    <i class="fas fa-map-marker-alt" style="color: #d4af37;"></i>
+                                    <span style="color: #6c757d; font-weight: 500;"><%= featuredProject.location %></span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                                    <div style="background: #e8f5e8; color: #28a745; padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"><%= featuredProject.status || 'Ready to Move' %></div>
+                                    <% if (featuredProject.reraNumber) { %>
+                                        <div style="background: #fff3cd; color: #856404; padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">RERA Approved</div>
+                                    <% } %>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px;">
+                                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+                                    <div style="color: #d4af37; font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-home"></i></div>
+                                    <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-size: 1.1rem;"><%= featuredProject.configuration || '2,3,4 BHK' %></h4>
+                                    <p style="color: #6c757d; margin: 0; font-size: 0.9rem;"><%= featuredProject.type || 'Apartments' %></p>
+                                </div>
+                                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+                                    <div style="color: #d4af37; font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-ruler-combined"></i></div>
+                                    <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-size: 1.1rem;"><%= featuredProject.area || '1200-2800' %></h4>
+                                    <p style="color: #6c757d; margin: 0; font-size: 0.9rem;">Sq.ft</p>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div style="text-align: center; color: #6c757d; padding: 40px;">
+                                <p>No featured project data available. Please add a featured project through the CMS.</p>
+                            </div>
+                        <% } %>
                         
-                        <!-- Custom Map Overlay with City Markers -->
-                        <div class="map-overlay">
-                            <div class="city-marker" data-city="bangalore" style="top: 65%; left: 55%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Bangalore<br><span>19 Projects</span></div>
+                        <% if (featuredProject) { %>
+                            <div style="margin-bottom: 30px;">
+                                <h4 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.2rem;">Key Highlights</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <% if (featuredProject.highlights && featuredProject.highlights.length > 0) { %>
+                                        <% featuredProject.highlights.forEach(highlight => { %>
+                                            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #495057;">
+                                                <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                                                <span><%= highlight %></span>
+                                            </li>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #495057;">
+                                            <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                                            <span>Lakeside location with panoramic views</span>
+                                        </li>
+                                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #495057;">
+                                            <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                                            <span>World-class clubhouse & amenities</span>
+                                        </li>
+                                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #495057;">
+                                            <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                                            <span>Premium location connectivity</span>
+                                        </li>
+                                    <% } %>
+                                </ul>
                             </div>
-                            <div class="city-marker" data-city="hyderabad" style="top: 55%; left: 58%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Hyderabad<br><span>9 Projects</span></div>
-                            </div>
-                            <div class="city-marker" data-city="mumbai" style="top: 50%; left: 35%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Mumbai<br><span>8 Projects</span></div>
-                            </div>
-                            <div class="city-marker" data-city="cochin" style="top: 75%; left: 45%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Cochin<br><span>6 Projects</span></div>
-                            </div>
-                            <div class="city-marker" data-city="delhi" style="top: 25%; left: 50%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Delhi NCR<br><span>3 Projects</span></div>
-                            </div>
-                            <div class="city-marker" data-city="chennai" style="top: 70%; left: 58%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">Chennai<br><span>1 Project</span></div>
-                            </div>
+                        <% } %>
+                        
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#contact" style="flex: 1; background: linear-gradient(135deg, #d4af37, #b8941f); color: white; padding: 15px 25px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(212,175,55,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 35px rgba(212,175,55,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(212,175,55,0.3)'">
+                                <i class="fas fa-phone" style="margin-right: 8px;"></i> Enquire Now
+                            </a>
+                            <% if (featuredProject) { %>
+                                <a href="/single-property/<%= featuredProject._id %>" style="flex: 1; background: white; color: #d4af37; padding: 15px 25px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 2px solid #d4af37; transition: all 0.3s ease;" onmouseover="this.style.background='#d4af37'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#d4af37'">
+                                    <i class="fas fa-eye" style="margin-right: 8px;"></i> View Details
+                                </a>
+                            <% } else { %>
+                                <a href="#" style="flex: 1; background: white; color: #d4af37; padding: 15px 25px; border-radius: 12px; text-decoration: none; font-weight: 600; text-align: center; border: 2px solid #d4af37; transition: all 0.3s ease;" onmouseover="this.style.background='#d4af37'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#d4af37'">
+                                    <i class="fas fa-calendar" style="margin-right: 8px;"></i> Site Visit
+                                </a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Featured Properties (CMS-ready) -->
+    <section class="woody-section prestige-woody-pad">
+        <div class="prestige-container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 class="prestige-page-title" style="color:#fff;">Featured Properties</h2>
+                <p style="color: rgba(255,255,255,0.85); max-width: 640px; margin: 8px auto 0;">A curated selection from our portfolio — dynamically powered for future CMS updates</p>
+            </div>
+            <div class="prestige-projects-grid">
+                <% (projects || []).forEach(project => { %>
+                <div class="prestige-card">
+                    <a href="/single-property/<%= project._id %>" class="prestige-card-image-link">
+                        <div class="prestige-card-image" style="background-image: url('<%= project.mainImage %>');">
+                            <span class="prestige-badge <%= project.status === 'Ongoing' ? 'prestige-badge-ongoing' : project.status === 'Completed' ? 'prestige-badge-completed' : 'prestige-badge-upcoming' %>"><%= project.status %></span>
+                        </div>
+                    </a>
+                    <div class="prestige-card-body">
+                        <h3 class="prestige-card-title"><%= project.title %></h3>
+                        <div class="prestige-card-location"><%= project.location %>, <%= project.city %></div>
+                        <div class="prestige-card-price"><%= project.startingPrice %></div>
+                        <div class="prestige-card-details">
+                            <span class="prestige-detail"><i class="icon-apartment"></i> <%= project.type %></span>
+                            <span class="prestige-detail"><i class="icon-bed"></i> <%= project.configuration %></span>
+                            <span class="prestige-detail"><i class="icon-area"></i> <%= project.area %></span>
+                        </div>
+                        <div class="prestige-card-actions">
+                            <a href="/contact" class="prestige-btn prestige-btn-primary">Enquire Now</a>
+                            <a href="/contact" class="prestige-btn prestige-btn-outline">Book a Site Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            <div style="text-align:center; margin-top: 24px;">
+                <a href="/all-projects" class="prestige-btn prestige-btn-outline">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Scroller Section -->
+    <section style="background: white; padding: 60px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+        <div class="prestige-container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h3 style="color: #2c3e50; font-size: 1.8rem; font-weight: 600; margin-bottom: 10px;">Trusted by Leading Organizations</h3>
+                <p style="color: #6c757d; font-size: 1rem;">Our partnerships and certifications ensure quality and reliability</p>
+            </div>
+            
+            <div style="overflow: hidden; position: relative;">
+                <div style="display: flex; animation: scroll 30s linear infinite; gap: 60px; align-items: center;">
+                    <!-- Logo Items -->
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/d4af37/ffffff?text=CRISIL" alt="CRISIL" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/2c3e50/ffffff?text=RERA" alt="RERA" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/28a745/ffffff?text=ISO" alt="ISO Certified" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/dc3545/ffffff?text=CREDAI" alt="CREDAI" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/6f42c1/ffffff?text=IGBC" alt="IGBC" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/fd7e14/ffffff?text=AWARDS" alt="Awards" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/d4af37/ffffff?text=CRISIL" alt="CRISIL" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 150px; height: 80px; background: #f8f9fa; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#e9ecef'" onmouseout="this.style.transform='scale(1)'; this.style.background='#f8f9fa'">
+                        <img src="https://via.placeholder.com/120x50/2c3e50/ffffff?text=RERA" alt="RERA" style="max-width: 120px; max-height: 50px; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+
+    <!-- Animated Statistics Section -->
+    <section style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); padding: 100px 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22dots%22%20width%3D%2220%22%20height%3D%2220%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%221%22%20fill%3D%22%23d4af37%22%20opacity%3D%220.3%22%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22url(%23dots)%22%3E%3C/rect%3E%3C/svg%3E'); opacity: 0.4;"></div>
+        
+        <div class="prestige-container" style="position: relative; z-index: 2;">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 3rem; font-weight: 700; color: white; margin-bottom: 15px; font-family: 'Playfair Display', serif;">Our Legacy in Numbers</h2>
+                <p style="font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; line-height: 1.6;">Three decades of excellence in creating landmark developments</p>
+                <div style="width: 80px; height: 3px; background: #d4af37; margin: 25px auto; border-radius: 2px;"></div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+                <!-- Statistic 1 -->
+                <div class="animate-on-scroll stat-card" style="text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.background='rgba(255,255,255,0.1)'">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(212,175,55,0.3);">
+                        <i class="fas fa-building" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3 class="counter" data-target="45" style="font-size: 3rem; font-weight: 700; color: #d4af37; margin: 0 0 10px 0;">0</h3>
+                    <p style="color: white; font-size: 1.1rem; font-weight: 600; margin: 0 0 5px 0;">Projects Delivered</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin: 0;">Across 6 Cities</p>
+                </div>
+                
+                <!-- Statistic 2 -->
+                <div class="animate-on-scroll stat-card" style="text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.background='rgba(255,255,255,0.1)'">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(212,175,55,0.3);">
+                        <i class="fas fa-users" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3 class="counter" data-target="25000" style="font-size: 3rem; font-weight: 700; color: #d4af37; margin: 0 0 10px 0;">0</h3>
+                    <p style="color: white; font-size: 1.1rem; font-weight: 600; margin: 0 0 5px 0;">Happy Families</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin: 0;">Living Our Dreams</p>
+                </div>
+                
+                <!-- Statistic 3 -->
+                <div class="animate-on-scroll stat-card" style="text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.background='rgba(255,255,255,0.1)'">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(212,175,55,0.3);">
+                        <i class="fas fa-award" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3 class="counter" data-target="30" style="font-size: 3rem; font-weight: 700; color: #d4af37; margin: 0 0 10px 0;">0</h3>
+                    <p style="color: white; font-size: 1.1rem; font-weight: 600; margin: 0 0 5px 0;">Years of Excellence</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin: 0;">Industry Leadership</p>
+                </div>
+                
+                <!-- Statistic 4 -->
+                <div class="animate-on-scroll stat-card" style="text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.background='rgba(255,255,255,0.1)'">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #d4af37, #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(212,175,55,0.3);">
+                        <i class="fas fa-chart-line" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3 class="counter" data-target="50" style="font-size: 3rem; font-weight: 700; color: #d4af37; margin: 0 0 10px 0;">0</h3>
+                    <p style="color: white; font-size: 1.1rem; font-weight: 600; margin: 0 0 5px 0;">Million Sq.ft</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin: 0;">Area Developed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <section class="section">
         <div class="container">
@@ -478,107 +1382,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Testimonials Section -->
-    <section style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 80px 0; position: relative;">
-        <div class="prestige-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2 style="font-size: 2.8rem; font-weight: 700; color: #2c3e50; margin-bottom: 15px; font-family: 'Playfair Display', serif;">What Our Customers Say</h2>
-                <p style="font-size: 1.1rem; color: #6c757d; max-width: 600px; margin: 0 auto; line-height: 1.6;">Hear from our satisfied customers who have made Prestige their home</p>
-                <div style="width: 60px; height: 3px; background: #d4af37; margin: 20px auto; border-radius: 2px;"></div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 60px;">
-                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
-                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
-                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">Prestige Construction has truly exceeded our expectations. The quality of construction, attention to detail, and the overall living experience is exceptional. Our dream home is now a reality.</p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">RK</div>
-                        <div>
-                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Rajesh Kumar</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige Pallavaram Gardens</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
-                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
-                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">The attention to detail and quality of construction is unmatched. The amenities provided are world-class. I highly recommend Prestige to anyone looking for their dream home.</p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">PS</div>
-                        <div>
-                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Priya Sharma</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige Lakeside Habitat</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; border: 1px solid rgba(212,175,55,0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
-                    <div style="color: #d4af37; font-size: 3rem; line-height: 1; margin-bottom: 20px; font-family: serif;">"</div>
-                    <p style="font-style: italic; margin-bottom: 25px; font-size: 1.05rem; line-height: 1.7; color: #495057;">Living in a Prestige property has been an absolute pleasure. The community is vibrant, the facilities are excellent, and the location is perfect.</p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #b8941f); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">AP</div>
-                        <div>
-                            <h4 style="color: #2c3e50; margin: 0 0 5px 0; font-weight: 600;">Arjun Patel</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d; margin: 0;">Prestige West Woods</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Client Logos Section -->
-            <div style="text-align: center; margin-top: 60px;">
-                <h3 style="font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin-bottom: 40px; font-family: 'Playfair Display', serif;">Trusted Partners & Certifications</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; align-items: center; opacity: 0.7;">
-                    <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
-                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <rect x="5" y="10" width="90" height="20" rx="4" fill="#d4af37"/>
-                             <text x="50" y="24" text-anchor="middle" fill="white" font-size="10" font-weight="bold">CRISIL</text>
-                         </svg>
-                     </div>
-                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
-                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <circle cx="20" cy="20" r="15" fill="#2c3e50"/>
-                             <text x="20" y="25" text-anchor="middle" fill="white" font-size="8" font-weight="bold">ISO</text>
-                             <text x="65" y="15" text-anchor="middle" fill="#2c3e50" font-size="8" font-weight="bold">CERTIFIED</text>
-                             <text x="65" y="25" text-anchor="middle" fill="#d4af37" font-size="6">Quality Management</text>
-                         </svg>
-                     </div>
-                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
-                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <rect x="10" y="5" width="80" height="30" rx="6" fill="#d4af37" stroke="#2c3e50" stroke-width="2"/>
-                             <text x="50" y="18" text-anchor="middle" fill="white" font-size="10" font-weight="bold">RERA</text>
-                             <text x="50" y="28" text-anchor="middle" fill="white" font-size="6">REGISTERED</text>
-                         </svg>
-                     </div>
-                     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; height: 80px; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.transform='scale(1)'">
-                         <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <circle cx="25" cy="20" r="12" fill="#28a745"/>
-                             <path d="M20 20 L23 23 L30 16" stroke="white" stroke-width="2" fill="none"/>
-                             <text x="65" y="15" text-anchor="middle" fill="#28a745" font-size="8" font-weight="bold">GREEN</text>
-                             <text x="65" y="25" text-anchor="middle" fill="#28a745" font-size="8" font-weight="bold">BUILDING</text>
-                         </svg>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Brands</h2>
-                <p>Explore the diverse verticals of Prestige Construction.</p>
-            </div>
-            <div class="brands-grid">
-                <div class="brand-logo" style="background-image: url('/images/brand1.jpg');"></div>
-                <div class="brand-logo" style="background-image: url('/images/brand2.jpg');"></div>
-                <div class="brand-logo" style="background-image: url('/images/brand3.jpg');"></div>
-                <div class="brand-logo" style="background-image: url('/images/brand4.jpg');"></div>
-                <div class="brand-logo" style="background-image: url('/images/brand5.jpg');"></div>
-                <div class="brand-logo" style="background-image: url('/images/brand6.jpg');"></div>
-            </div>
-        </div>
-    </section>
     <div class="container">
         <div class="section-title">
             <h2>Contact Us</h2>
@@ -680,34 +1484,335 @@
     </footer>
 
     <script>
-        // Hero Slider JavaScript
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.hero-nav-dot');
+        const totalSlides = slides.length;
         
-        function changeSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
         }
         
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            changeSlide(currentSlide);
+        function nextHeroSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
         }
-
-        // Header scroll effect
+        
+        function previousHeroSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        // Auto-advance slides
+        if (slides.length > 0) {
+            setInterval(nextHeroSlide, 5000);
+            showSlide(0);
+        }
+        
+        // Enhanced Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.prestige-header-new');
-            if (header && window.scrollY > 50) { // Adjust this value as needed
+            const scrollY = window.scrollY;
+            
+            if (header && scrollY > 50) {
                 header.classList.add('scrolled');
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
             } else if (header) {
                 header.classList.remove('scrolled');
+                header.style.background = 'transparent';
+                header.style.backdropFilter = 'none';
+                header.style.boxShadow = 'none';
             }
         });
-    </script>
-</body>
+        
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index > 0) { // Skip hero section
+                    section.classList.add('animate-on-scroll');
+                    observer.observe(section);
+                }
+            });
+            
+            // Add enhanced button classes
+            const buttons = document.querySelectorAll('.hero-btn-primary, .hero-btn-secondary, .btn-primary, .btn-secondary');
+            buttons.forEach(btn => {
+                btn.classList.add('enhanced-btn');
+            });
+            
+            // Stagger animations for grid items
+            const gridItems = document.querySelectorAll('.project-card, .property-card, .city-card');
+            gridItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.classList.add('animate-scale');
+                observer.observe(item);
+            });
+            
+            // Add slide animations to alternating content
+            const contentBlocks = document.querySelectorAll('.section .container > div');
+            contentBlocks.forEach((block, index) => {
+                if (index % 2 === 0) {
+                    block.classList.add('animate-slide-left');
+                } else {
+                    block.classList.add('animate-slide-right');
+                }
+                observer.observe(block);
+            });
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-slide');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+
+        
+        // Loading Animations and Skeleton Screens
+        function initLoadingAnimations() {
+            // Create page loader
+            const pageLoader = document.createElement('div');
+            pageLoader.id = 'page-loader';
+            pageLoader.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; border: 3px solid #d4af37; border-top: 3px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                        <div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">PRESTIGE</div>
+                        <div style="color: #fff; font-size: 0.9rem; margin-top: 10px; opacity: 0.8;">Loading Excellence...</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(pageLoader);
+            
+            // Add spinner animation
+            const spinnerStyle = document.createElement('style');
+            spinnerStyle.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                .skeleton {
+                    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                    background-size: 200% 100%;
+                    animation: skeleton-loading 1.5s infinite;
+                }
+                
+                @keyframes skeleton-loading {
+                    0% { background-position: 200% 0; }
+                    100% { background-position: -200% 0; }
+                }
+                
+                .fade-in-up {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .fade-in-up.visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                .scale-in {
+                    opacity: 0;
+                    transform: scale(0.8);
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .scale-in.visible {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            `;
+            document.head.appendChild(spinnerStyle);
+            
+            // Remove loader after page loads
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    pageLoader.style.opacity = '0';
+                    setTimeout(() => {
+                        pageLoader.remove();
+                    }, 500);
+                }, 800);
+            });
+            
+            // Add skeleton loading to images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.complete) {
+                    img.style.background = 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)';
+                    img.style.backgroundSize = '200% 100%';
+                    img.style.animation = 'skeleton-loading 1.5s infinite';
+                    
+                    img.addEventListener('load', () => {
+                        img.style.background = 'none';
+                        img.style.animation = 'none';
+                    });
+                }
+            });
+            
+            // Staggered animations for content sections
+            const contentElements = document.querySelectorAll('.section, .project-card, .property-card');
+            contentElements.forEach((el, index) => {
+                el.classList.add('fade-in-up');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 100);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                observer.observe(el);
+            });
+        }
+        
+        // Advanced Interactive Features
+        function initInteractiveFeatures() {
+            // Image zoom on hover for property cards
+            const propertyImages = document.querySelectorAll('.property-card img, .project-card img');
+            propertyImages.forEach(img => {
+                const container = img.closest('.property-card, .project-card');
+                if (container) {
+                    container.style.overflow = 'hidden';
+                    img.style.transition = 'transform 0.3s ease';
+                    
+                    container.addEventListener('mouseenter', () => {
+                        img.style.transform = 'scale(1.1)';
+                    });
+                    
+                    container.addEventListener('mouseleave', () => {
+                        img.style.transform = 'scale(1)';
+                    });
+                }
+            });
+            
+            // Smooth scrolling navigation
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.prestige-header-new')?.offsetHeight || 0;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Dynamic content loading effect
+            const dynamicElements = document.querySelectorAll('.hero-content, .stat-card, .city-card');
+            dynamicElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 200 + (index * 150));
+            });
+            
+            // Enhanced button ripple effects
+            const buttons = document.querySelectorAll('button, .btn-primary, .btn-secondary, .hero-btn-primary, .hero-btn-secondary');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple-effect 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+            
+            // Add ripple animation
+            const rippleStyle = document.createElement('style');
+            rippleStyle.textContent = `
+                @keyframes ripple-effect {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(rippleStyle);
+        }
+        
+        // Initialize features after DOM is loaded
+         document.addEventListener('DOMContentLoaded', function() {
+             // Initialize all features
+             initLoadingAnimations();
+             initInteractiveFeatures();
+         });
+     </script>
+ </body>
 </html>

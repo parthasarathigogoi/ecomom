@@ -8,16 +8,43 @@
     <link rel="stylesheet" href="/css/prestige.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">PRESTIGE</div>
-            <nav class="nav-menu">
-                <a href="/">Home</a>
-                <a href="/projects">All Projects</a>
-                <a href="/about" class="active">About Us</a>
-                <a href="/blog">Blog</a>
-                <a href="/contact">Contact Us</a>
-            </nav>
+    <!-- Header -->
+    <header class="prestige-header-new">
+        <!-- Black Top Bar -->
+        <div class="prestige-top-bar" style="background: #000; padding: 15px 0; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: 70px; display: flex; align-items: center;">
+            <div class="prestige-container" style="width: 100%;">
+                <div class="prestige-top-content" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                    <nav class="prestige-nav">
+                        <ul class="prestige-nav-menu" style="display: flex; list-style: none; justify-content: space-between; width: 100%; max-width: 800px; margin: 0; padding: 0 40px; align-items: center;">
+                            <li><a href="/" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Home</a></li>
+                            <li><a href="/all-projects" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">All Projects</a></li>
+                            <li><a href="/about-us" class="prestige-nav-link active-nav" style="color: #d4af37; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;">About Us</a></li>
+                            <li><a href="/blog" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Blog</a></li>
+                            <li><a href="/contact" class="prestige-nav-link" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease; position: relative; line-height: 1;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='white'">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logo positioned between black and transparent sections -->
+        <div class="prestige-logo-bridge" style="position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1002; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 25px; border: 2px solid rgba(212,175,55,0.3);">
+            <div class="prestige-logo">
+                <h2 style="color: #d4af37; font-family: 'Playfair Display', serif; margin: 0; font-size: 1.6rem; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">PRESTIGE</h2>
+            </div>
+        </div>
+        
+        <!-- Transparent Decorative Bar -->
+        <div class="prestige-transparent-bar" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 0; position: fixed; top: 70px; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div class="prestige-container" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="prestige-decorative-content" style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 300;">
+                    <span>Premium Real Estate Solutions</span>
+                    <span>•</span>
+                    <span>Luxury Living Redefined</span>
+                    <span>•</span>
+                    <span>Excellence in Construction</span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -37,6 +64,66 @@
             <p>We take immense pride in crafting residential projects that redefine luxury living. From stylish apartments in gated communities to opulent villas, each Prestige development is a testament to architectural brilliance and uncompromising quality.</p>
         </div>
     </section>
+
+    <!-- Legacy & Vision -->
+    <section class="woody-section prestige-woody-pad">
+        <div class="prestige-container">
+            <div class="section-title" style="margin-bottom: 40px;">
+                <h2 style="color:#fff">Legacy & Vision</h2>
+                <p style="color: rgba(255,255,255,0.85);">From our first boutique project in Bengaluru to pan-India developments, our journey has been about elevating everyday life.</p>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px;">
+                <div class="woody-card" style="padding:22px; border-radius:16px;">
+                    <h3 class="prestige-card-title" style="color:#fff; margin-bottom:8px;">Design First</h3>
+                    <p style="color:rgba(255,255,255,0.9)">Architect-led planning, climate-responsive facades, and timeless interiors that age beautifully.</p>
+                </div>
+                <div class="woody-card" style="padding:22px; border-radius:16px;">
+                    <h3 class="prestige-card-title" style="color:#fff; margin-bottom:8px;">Engineering Excellence</h3>
+                    <p style="color:rgba(255,255,255,0.9)">IS codes compliance, seismic-ready structures, and material selection driven by performance.</p>
+                </div>
+                <div class="woody-card" style="padding:22px; border-radius:16px;">
+                    <h3 class="prestige-card-title" style="color:#fff; margin-bottom:8px;">People & Places</h3>
+                    <p style="color:rgba(255,255,255,0.9)">Communities that foster belonging with curated amenities, greener landscapes and safer streets.</p>
+                </div>
+                <div class="woody-card" style="padding:22px; border-radius:16px;">
+                    <h3 class="prestige-card-title" style="color:#fff; margin-bottom:8px;">Aftercare</h3>
+                    <p style="color:rgba(255,255,255,0.9)">Dedicated handover teams, digital support, and facility management to ensure worry‑free living.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones -->
+    <section class="section">
+        <div class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:24px; text-align:center;">
+            <div class="prestige-card" style="padding:28px; border-radius:16px;">
+                <h3 style="color:var(--prestige-secondary); font-size:2.2rem;">35+</h3>
+                <p>Years Building</p>
+            </div>
+            <div class="prestige-card" style="padding:28px; border-radius:16px;">
+                <h3 style="color:var(--prestige-secondary); font-size:2.2rem;">8</h3>
+                <p>Major Cities</p>
+            </div>
+            <div class="prestige-card" style="padding:28px; border-radius:16px;">
+                <h3 style="color:var(--prestige-secondary); font-size:2.2rem;">300+</h3>
+                <p>Completed Projects</p>
+            </div>
+            <div class="prestige-card" style="padding:28px; border-radius:16px;">
+                <h3 style="color:var(--prestige-secondary); font-size:2.2rem;">50+</h3>
+                <p>Ongoing Developments</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+      // Keep nav visible and premium while scrolling
+      window.addEventListener('scroll', function(){
+        const header = document.querySelector('.prestige-header-new');
+        if(!header) return;
+        if(window.scrollY > 50){ header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+      });
+    </script>
 
     <!-- Footer -->
     <footer class="footer">
@@ -106,5 +193,53 @@
             </div>
         </div>
     </footer>
+    
+    <style>
+        @media (max-width: 768px) {
+            .prestige-logo-bridge {
+                top: 45px !important;
+                padding: 8px 20px !important;
+            }
+            
+            .prestige-logo-bridge h2 {
+                font-size: 1.4rem !important;
+            }
+            
+            .prestige-nav-menu {
+                max-width: 600px !important;
+                padding: 0 20px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .prestige-logo-bridge {
+                top: 42px !important;
+                padding: 6px 15px !important;
+            }
+            
+            .prestige-logo-bridge h2 {
+                font-size: 1.2rem !important;
+            }
+            
+            .prestige-nav-menu {
+                max-width: 100% !important;
+                padding: 0 10px !important;
+            }
+        }
+    </style>
+    
+    <script>
+        // Header scroll behavior
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.prestige-header-new');
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
+    </script>
 </body>
 </html>

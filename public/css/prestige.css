@@ -671,21 +671,6 @@ a {
   font-size: 0.9rem;
 }
 
-.prestige-project-details {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.prestige-project-type,
-.prestige-project-config {
-  background: var(--prestige-light-gray);
-  padding: 5px 12px;
-  font-size: 0.8rem;
-  color: var(--prestige-text);
-  border-radius: 20px;
-}
-
 .prestige-project-price {
   font-size: 1.3rem;
   font-weight: 700;
@@ -2254,3 +2239,103 @@ a {
     margin-top: 15px;
   }
 }
+/* Woody Premium Theme Tokens */
+:root {
+  --wood-deep: #1e140f;
+  --wood-ember: #2b1d14;
+  --wood-brown: #4a2f22;
+  --wood-caramel: #7a4b28;
+  --wood-gold: #d4af37;
+  --wood-ivory: #f6efe6;
+}
+
+/* Woody gradient utilities */
+.woody-gradient {
+  background-image:
+    linear-gradient(135deg, rgba(212,175,55,0.15), rgba(0,0,0,0) 60%),
+    repeating-linear-gradient(25deg, rgba(255,255,255,0.05) 0 2px, rgba(0,0,0,0.05) 2px 4px),
+    linear-gradient(120deg, var(--wood-ember), var(--wood-brown) 55%, var(--wood-caramel));
+  background-blend-mode: overlay, overlay, normal;
+}
+
+.woody-section {
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(212,175,55,0.12), transparent 40%),
+              linear-gradient(180deg, #0e0e0f 0%, var(--wood-ember) 45%, var(--wood-brown) 100%);
+  position: relative;
+}
+
+/* Optional subtle top highlight bar */
+.woody-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(212,175,55,0.15), rgba(0,0,0,0));
+  pointer-events: none;
+}
+
+/* Woody card surface */
+.woody-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid rgba(212,175,55,0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Make hero overlay warmer and premium (used across pages) */
+.prestige-hero-overlay {
+  background-image:
+    linear-gradient(120deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 35%, rgba(212,175,55,0.22) 100%);
+}
+
+/* Keep header visible on scroll */
+.prestige-header-new.scrolled {
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+}
+
+/* Blog Grid Premium Styles */
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,175,55,0.18);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.blog-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
+
+.blog-image { height: 220px; background-size: cover; background-position: center; }
+.blog-content { padding: 20px; }
+.blog-title { color: var(--prestige-light); font-size: 1.25rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.blog-date { color: rgba(255,255,255,0.7); font-size: .9rem; margin-bottom: 12px; }
+.blog-description { color: rgba(255,255,255,0.85); margin-bottom: 16px; }
+
+/* Reusable gradient button variant to match theme */
+.prestige-btn-outline {
+  background: transparent; color: var(--wood-gold); border: 2px solid var(--wood-gold); padding: 12px 20px; border-radius: 12px; text-transform: none; letter-spacing: .3px;
+}
+.prestige-btn-outline:hover { background: linear-gradient(135deg, #d4af37, #b8941f); color: #111; border-color: transparent; }
+
+/* Utility paddings for woody sections */
+.prestige-woody-pad { padding: 80px 0; }
+
+/* Prestige card subtle lift on hover (shared) */
+.prestige-card { transition: transform .25s ease, box-shadow .25s ease; }
+.prestige-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.25); }
+
+/* Contact layout */
+.contact-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; }
+@media(max-width: 900px){ .contact-grid { grid-template-columns: 1fr; }}
+
+.contact-info-card { border-radius: 18px; padding: 24px; }
+.contact-map { height: 260px; border-radius: 14px; overflow: hidden; margin-top: 14px; }
+
+/* Make sections that use dark theme readable */
+.woody-section, .woody-gradient { color: var(--prestige-light); }
+/* end woody theme */

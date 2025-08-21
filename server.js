@@ -42,6 +42,7 @@ const projectRoutes = require('./routes/projectRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const Project = require('./models/Project');
+const BlogPost = require('./models/BlogPost');
 
 // Use Routes
 app.use('/api/auth', authRoutes);
@@ -53,10 +54,11 @@ app.use('/admin', adminRoutes);
 app.get('/', async (req, res) => {
   try {
     const projects = await Project.find({ featured: true }).limit(3);
-    res.render('home', { projects });
+    const featuredProject = await Project.findOne({ featured: true }).sort({ createdAt: -1 });
+    res.render('home', { projects, featuredProject });
   } catch (error) {
     console.error('Error fetching projects:', error);
-    res.render('home', { projects: [] });
+    res.render('home', { projects: [], featuredProject: null });
   }
 });
 
@@ -93,12 +95,24 @@ app.get('/about', (req, res) => {
     res.render('about-us');
 });
 
-app.get('/blog', (req, res) => {
-    res.render('blog');
+app.get('/blog', async (req, res) => {
+    try {
+      const blogs = await BlogPost.find({}).sort({ createdAt: -1 }).limit(12);
+      res.render('blog', { blogs });
+    } catch (e) {
+      console.error('Error fetching blogs:', e);
+      res.render('blog', { blogs: [] });
+    }
 });
 
 app.get('/contact', (req, res) => {
     res.render('contact');
+});
+
+app.post('/api/contact', (req, res) => {
+  const { name, email, phone, message } = req.body || {};
+  console.log('Contact Inquiry:', { name, email, phone, message, at: new Date().toISOString() });
+  return res.status(200).json({ success: true });
 });
 
 const PORT = process.env.PORT || 3000;
